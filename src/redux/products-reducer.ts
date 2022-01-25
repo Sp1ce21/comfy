@@ -46,16 +46,16 @@ type productsType = {
 export const setProducts = (products: Array<productsObject>): productsType => ({ type: GET_PRODUCTS, products })
 
 
-type responseType = {
-    data: Array<productsObject>
-    headers: any
-    status: number
-    statusText: string
-    config: Object
-}
+// type responseType = {
+//     data: Array<productsObject>
+//     headers: any
+//     status: number
+//     statusText: string
+//     config: Object
+// }
 
 export const getProductsAC = () => async (dispatch: any) => {
-    let response: responseType = await productsAPI.getProducts();
+    let response = await productsAPI.getProducts();
     console.log(response)
     dispatch(setProducts(response.data));
 }

@@ -1,5 +1,6 @@
 import PageName from '../../common/PageName/PageName';
 import { productsObject } from '../../redux/products-reducer';
+import FilterContainer from './Filter/FilterContainer';
 import s from './Products.module.css'
 
 type Props = {
@@ -7,17 +8,14 @@ type Props = {
 }
 
 const Products: React.FC<Props> = ({ products }) => {
-    // debugger
-    // let data = products.data
-
-    // console.log(data.category)
-
     return (
         <main className={s.main}>
             <PageName name='Products' />
-            {/* {products.data} */}
-
-            {/* {data.category} */}
+            <div className='container'>
+                <div className={s.row}>
+                    <FilterContainer />
+                </div>
+            </div>
         </main>
     )
 }

@@ -1,0 +1,31 @@
+.column{
+    display: flex;
+    flex-direction: column;
+
+    flex: 0 0 10%;
+}
+.input{
+    padding: 6px 6px 6px 10px;
+    width: 100%;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    background-color: #f1f5f8;
+    color: #757575;
+}
+.companies{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.title{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.list li{
+    color: #617d98;
+    font-size: 16px;
+}
+.price{
+    color: #617d98;
+}
