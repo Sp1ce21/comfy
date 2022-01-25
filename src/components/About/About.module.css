@@ -1,0 +1,13 @@
+.post{
+    margin-top: 100px;
+}
+.slash {
+    color: #ba5d2c;
+    margin-right: 15px;
+}
+.post .slash, .post h1 {
+    font-size: 62px;
+}
+.title{
+    color: #112942;
+}
