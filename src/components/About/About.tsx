@@ -6,7 +6,7 @@ const About: React.FC = () => {
         <main className={s.main}>
             <PageName name='About' />
             <div className={s.post}>
-                <div className={'row' + ' ' + s.margin}>
+                <div className='row'>
                     <span className={s.slash}>/</span>
                     <h1 className={s.title}>Our History</h1>
                 </div>
