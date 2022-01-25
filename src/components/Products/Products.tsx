@@ -1,8 +1,9 @@
 import PageName from '../../common/PageName/PageName';
+import { productsObject } from '../../redux/products-reducer';
 import s from './Products.module.css'
 
 type Props = {
-    products: any
+    products: Array<productsObject>
 }
 
 const Products: React.FC<Props> = ({ products }) => {

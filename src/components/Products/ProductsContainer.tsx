@@ -1,13 +1,13 @@
 import { connect } from "react-redux"
 import { appStateType } from "../../redux/store"
 import Products from "./Products"
-import { getProductsAC } from '../../redux/products-reducer'
+import { getProductsAC, productsObject } from '../../redux/products-reducer'
 import { useEffect, useState } from "react"
 
 type Props = {
-    products: Array<any>
+    products: Array<productsObject>
 
-    getProductsAC: any
+    getProductsAC: ()=>void
 }
 
 const ProductsContainer: React.FC<Props> = ({ products, getProductsAC }) => {
@@ -20,8 +20,6 @@ const ProductsContainer: React.FC<Props> = ({ products, getProductsAC }) => {
             setCondition(false)
         }
     })
-
-    // getProductsAC()
 
     return (
         <Products products={products} />

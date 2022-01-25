@@ -1,11 +1,9 @@
-// import { appStateType } from './store';
 import { productsAPI } from './../api/api';
 
 const GET_PRODUCTS = 'GET_PRODUCTS'
 
 let initialState = {
-    products: [] as Array<any>,
-    test: "hello" as string
+    products: [] as Array<productsObject>,
 };
 
 export type initialStateType = typeof initialState;
@@ -21,22 +19,44 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
     }
 }
 
+
+export type productsObject = {
+    category: string
+    id: number
+    description: string
+    image: string
+    price: number
+    rating: {
+        rate: number
+        count: number
+    }
+    title: string
+}
+
 type actionsTypes = {
     type: string
-    products: Array<any>
+    products: Array<productsObject>
 }
 
 type productsType = {
     type: typeof GET_PRODUCTS,
-    products: Array<any>
+    products: Array<productsObject>
 }
 
-export const setProducts = (products: any): productsType => ({ type: GET_PRODUCTS, products })
+export const setProducts = (products: Array<productsObject>): productsType => ({ type: GET_PRODUCTS, products })
 
+
+type responseType = {
+    data: Array<productsObject>
+    headers: any
+    status: number
+    statusText: string
+    config: Object
+}
 
 export const getProductsAC = () => async (dispatch: any) => {
-    let response: any = await productsAPI.getProducts();
-    // debugger
+    let response: responseType = await productsAPI.getProducts();
+    console.log(response)
     dispatch(setProducts(response.data));
 }
 
