@@ -2,6 +2,9 @@ import s from './Filter.module.css'
 import {Props} from './FilterContainer'
 
 const Filter: React.FC<Props> = ({setPrice, setSearch, price, search, minPrice, maxPrice}) => {
+    
+    console.log(price)
+
     return (
         <div className={s.column}>
             <input type="text" className={s.input} placeholder='Search...' onChange={(e)=>setSearch(e.target.value)} value={search}/>

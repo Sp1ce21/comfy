@@ -9,16 +9,24 @@ type Props = {
     search: string
     price: number
 
-    getProductsAC: ()=>void
+    getProductsAC: () => void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, search, price}) => {
+const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, search, price }) => {
+    console.log('rendered')
+
+    let [needProducts, setNeedProducts] = useState(true)
 
     useEffect(() => {
-            getProductsAC()
-    },[products, price])
-    let filteredWithPriceProducts = products.filter((item=>item.price < price))
-    let filteredProducts = filteredWithPriceProducts.filter((item=>item.title.toLowerCase().includes(search.toLowerCase())))
+        if(needProducts){
+        getProductsAC()
+        setNeedProducts(false)
+        }
+    })
+    useEffect(() => {
+    }, [search, price])
+    let filteredWithPriceProducts = products.filter((item => item.price < price))
+    let filteredProducts = filteredWithPriceProducts.filter((item => item.title.toLowerCase().includes(search.toLowerCase())))
     return (
         <Products products={filteredProducts} />
     )
