@@ -64,7 +64,7 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
         case SET_CATEGORIES:
             return {
                 ...state,
-                categories: [...state.categories, ...action.categories]
+                categories: ['All', ...action.categories]
             }
         case SET_CURRENT_CATEGORY:
             return {
