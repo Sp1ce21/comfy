@@ -4,14 +4,29 @@ import './App.css';
 import About from './components/About/About';
 import HeaderContainer from './components/Header/HeaderContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
-import { Provider } from 'react-redux'
-import store from './redux/store';
+import { connect, } from 'react-redux'
+import { appStateType } from './redux/store';
+import BusketContainer from './components/Basket/BusketContainer';
+import { setIsBasket } from './redux/products-reducer'
 
-const App: React.FC = () => {
+type Props = {
+    isBasket: boolean
+    setIsBasket: any
+}
+
+const AppContainer: React.FC<Props> = ({ isBasket, setIsBasket }) => {
     return (
-        <Provider store={store}>
-            <div className="wrapper">
-                <div>
+        <App isBasket={isBasket} setIsBasket={setIsBasket} />
+    );
+}
+
+
+const App: React.FC<Props> = ({ isBasket, setIsBasket }) => {
+    return (
+        <div className={"wrapper" + ' ' + isBasket ? 'overflowHidden' : ''}>
+            <div className='appRow'>
+                <div className={isBasket ? 'blackBackGround' : ''} onClick={() => { isBasket && setIsBasket(false) }}></div>
+                <div className='pages'>
                     <div className="container">
                         <HeaderContainer />
                     </div>
@@ -20,9 +35,19 @@ const App: React.FC = () => {
                         <Route path='/products' render={() => <ProductsContainer />} />
                     </Switch>
                 </div>
+
+                {isBasket && <BusketContainer />}
             </div>
-        </Provider>
+        </div>
     );
 }
 
-export default App;
+
+
+
+let mapStateToProps = (state: appStateType) => ({
+    isBasket: state.productsPage.isBasket
+});
+
+
+export default connect(mapStateToProps, { setIsBasket })(AppContainer);

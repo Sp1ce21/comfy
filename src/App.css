@@ -10,4 +10,19 @@
 }
 .wrapper{
     overflow-x: hidden;
+    position: relative;
+}
+.pages{
+    flex: 1 1 auto;
+}
+.blackBackGround{
+    position: absolute;
+    width:100%;
+    height:100%;
+    background:#000;
+    opacity:0.5;
+}
+.overflowHidden{
+    overflow: hidden;
+    max-height: 100vh;
 }

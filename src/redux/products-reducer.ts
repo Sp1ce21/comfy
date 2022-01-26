@@ -1,4 +1,3 @@
-import { arrayShift } from 'redux-form';
 import { productsAPI } from './../api/api';
 
 const GET_PRODUCTS = 'GET_PRODUCTS'
@@ -8,6 +7,7 @@ const SET_MIN_PRICE = 'SET_MIN_PRICE'
 const SET_MAX_PRICE = 'SET_MAX_PRICE'
 const SET_CATEGORIES = 'SET_CATEGORIES'
 const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
+const SET_IS_BASKET = 'SET_IS_BASKET'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -16,7 +16,8 @@ let initialState = {
     minPrice: 0 as number,
     maxPrice: 500 as number,
     categories: ['All'] as Array<string>,
-    currentCategory: 'All' as string
+    currentCategory: 'All' as string,
+    isBasket: false as boolean,
 };
 
 export type initialStateType = typeof initialState;
@@ -32,6 +33,7 @@ type actionsTypes = {
     maxPrice: number
     categories: Array<string>
     currentCategory: string
+    isBasket: boolean
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -70,6 +72,11 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
             return {
                 ...state,
                 currentCategory: action.currentCategory
+            }
+        case SET_IS_BASKET:
+            return {
+                ...state,
+                isBasket: action.isBasket
             }
         default: return state;
     }
@@ -138,6 +145,12 @@ type setCurrentCategoryType = {
 }
 export const setCurrentCategory = (currentCategory: string): setCurrentCategoryType => ({ type: SET_CURRENT_CATEGORY, currentCategory })
 
+
+type setIsBasketType = {
+    type: typeof SET_IS_BASKET,
+    isBasket: boolean
+}
+export const setIsBasket = (isBasket: boolean): setIsBasketType => ({ type: SET_IS_BASKET, isBasket })
 
 
 

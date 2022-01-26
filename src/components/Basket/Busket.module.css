@@ -1,0 +1,9 @@
+.busket {
+    width: 300px;
+    background-color: #f1f5f8;
+    min-height: 100%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
