@@ -1,23 +1,32 @@
 import { connect } from "react-redux"
 import { appStateType } from '../../../redux/store'
-// import Products from "./Products"
-// import { getProductsAC, productsObject } from '../../redux/products-reducer'
+import { setPrice, setSearch } from '../../../redux/products-reducer'
 import Filter from "./Filter"
 
-type Props = {
-    // products: Array<productsObject>
+export type Props = {
+    price: number
+    search: string
+    minPrice: number
+    maxPrice: number
 
-    // getProductsAC: ()=>void
+    setSearch: (search: string) => void
+    setPrice: (price: number) => void
 }
 
-const ProductsContainer: React.FC<Props> = () => {
+const ProductsContainer: React.FC<Props> = ({ setPrice, price, setSearch, search, maxPrice, minPrice}) => {
+
+
+
     return (
-        <Filter/>
+        <Filter setPrice={setPrice} price={price} setSearch={setSearch} search={search} maxPrice={maxPrice} minPrice={minPrice}/>
     )
 }
 
 let mapStateToProps = (state: appStateType) => ({
-    // products: state.productsPage.products
+    price: state.productsPage.price,
+    search: state.productsPage.search,
+    minPrice: state.productsPage.minPrice,
+    maxPrice: state.productsPage.maxPrice,
 });
 
-export default connect(mapStateToProps, { })(ProductsContainer);
+export default connect(mapStateToProps, { setPrice, setSearch })(ProductsContainer);

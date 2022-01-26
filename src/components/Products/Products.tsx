@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Products: React.FC<Props> = ({ products }) => {
-    debugger
+
     return (
         <main className={s.main}>
             <PageName name='Products' />

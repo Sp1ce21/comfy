@@ -7,7 +7,7 @@ type Props = {
 }
 
 const ProductItem: React.FC<Props> = ({ image, price, title }) => {
-    debugger
+
     return (
         <div className={s.item}>
             <div className={s.imgContainer}><img src={image} alt="" /></div>

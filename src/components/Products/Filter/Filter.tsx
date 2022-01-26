@@ -1,11 +1,7 @@
-import { useState } from 'react';
 import s from './Filter.module.css'
+import {Props} from './FilterContainer'
 
-const Filter: React.FC = () => {
-
-    const [range, setRange] = useState(40)
-    const [search, setSearch] = useState('')
-
+const Filter: React.FC<Props> = ({setPrice, setSearch, price, search, minPrice, maxPrice}) => {
 
     return (
         <div className={s.column}>
@@ -23,8 +19,8 @@ const Filter: React.FC = () => {
             <div className={s.price}>
                 <div className={s.title}>Price</div>
                 <input type="range" id="price" className={s.range} name="price"
-         min="1" max="80"  step='1' onChange={(e)=>setRange(+e.target.value)} value={range}/>
-                <div className={s.value}>Value: ${range}</div>
+         min={minPrice} max={maxPrice}  step='1' onChange={(e)=>setPrice(+e.target.value)} value={price}/>
+                <div className={s.value}>Value: ${price}</div>
             </div>
         </div>
     )

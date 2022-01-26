@@ -11,7 +11,7 @@ type Props = {
 }
 
 const ProductsContainer: React.FC<Props> = ({ products, getProductsAC }) => {
-    debugger
+
     const [condition, setCondition] = useState(true);
 
     useEffect(() => {
