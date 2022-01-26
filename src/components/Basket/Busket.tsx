@@ -4,13 +4,13 @@ import { Props } from './BusketContainer';
 
 const Busket: React.FC<Props> = ({ setIsBasket }) => {
 
-    let [myTimeout, setMyTimeout] = useState(true)
+    let [myTimeoutOpen, setMyTimeoutOpen] = useState(true)
     let [isActiveBasket, setIsActiveBasket] = useState(false)
 
     useEffect(() => {
-        if (myTimeout) {
+        if (myTimeoutOpen) {
             setTimeout(() => {
-                setMyTimeout(false)
+                setMyTimeoutOpen(false)
                 setIsActiveBasket(true)
             }, 100);
         }
@@ -18,7 +18,16 @@ const Busket: React.FC<Props> = ({ setIsBasket }) => {
 
     return (
         <div className={isActiveBasket ? s.active : s.busket}>
-            hello!
+            <div className={s.margin}>
+                <div className={s.button} onClick={()=>setIsBasket(false)}>
+                    <span className={s.first}></span>
+                    <span className={s.second}></span>
+                </div>
+            </div>
+            <div className={s.column}>
+                <h2 className={s.title}>Your Bag</h2>
+                <div className={s.items}></div>
+            </div>
         </div>
     )
 }

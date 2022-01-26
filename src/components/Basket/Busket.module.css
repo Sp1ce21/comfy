@@ -9,7 +9,10 @@
 
     transition: 0.3s;
 }
-.active{
+.margin{
+    margin-top: 20px;
+}
+.active {
     width: 300px;
     background-color: #f1f5f8;
     min-height: 100%;
@@ -19,4 +22,32 @@
     right: 0px;
 
     transition: 0.3s;
+}
+.button{
+    padding: 6px;
+    position: relative;
+    cursor: pointer;
+}
+.button span{
+    position: absolute;
+    width: 25px;
+    height: 4px;
+    background-color: #617d98;
+    border-radius: 5px;
+}
+.first{
+    transform: rotate(45deg);
+}
+.second{
+    transform: rotate(-45deg);
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 40px;
+}
+.title {
+    
 }
