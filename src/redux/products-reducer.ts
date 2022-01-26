@@ -9,10 +9,10 @@ const SET_MAX_PRICE = 'SET_MAX_PRICE'
 
 let initialState = {
     products: [] as Array<productsObject>,
-    price: 100 as number,
+    price: 500 as number,
     search: '' as string,
     minPrice: 0 as number,
-    maxPrice: 100 as number,
+    maxPrice: 500 as number,
 };
 
 export type initialStateType = typeof initialState;
@@ -128,8 +128,10 @@ export const getProductsAC = () => async (dispatch: any) => {
     array.sort(function (a, b) {
         return a - b;
     });
-    dispatch(findMinPrice(Math.floor(array[0])));
-    dispatch(findMaxPrice(Math.ceil(array[array.length - 1])));
+    const maxPrice = Math.ceil(array[array.length - 1]);
+    dispatch(findMinPrice(Math.ceil(array[0])));
+    dispatch(findMaxPrice(maxPrice));
+    dispatch(setPrice(maxPrice));
 }
 
 

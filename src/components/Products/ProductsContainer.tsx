@@ -6,28 +6,29 @@ import { useEffect, useState } from "react"
 
 type Props = {
     products: Array<productsObject>
+    search: string
+    price: number
 
     getProductsAC: ()=>void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getProductsAC }) => {
-
-    const [condition, setCondition] = useState(true);
+const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, search, price}) => {
 
     useEffect(() => {
-        // if (condition) {
             getProductsAC()
-        //     setCondition(false)
-        // }
-    },[products])
-
+    },[products, price])
+    let filteredWithPriceProducts = products.filter((item=>item.price < price))
+    let filteredProducts = filteredWithPriceProducts.filter((item=>item.title.toLowerCase().includes(search.toLowerCase())))
     return (
-        <Products products={products} />
+        <Products products={filteredProducts} />
     )
 }
 
 let mapStateToProps = (state: appStateType) => ({
-    products: state.productsPage.products
+    products: state.productsPage.products,
+    search: state.productsPage.search,
+    price: state.productsPage.price,
+    maxPrice: state.productsPage.maxPrice
 });
 
 export default connect(mapStateToProps, { getProductsAC })(ProductsContainer);
