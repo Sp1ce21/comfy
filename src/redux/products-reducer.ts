@@ -6,6 +6,8 @@ const SET_PRICE = 'SET_PRICE'
 const SET_SEARCH = 'SET_SEARCH'
 const SET_MIN_PRICE = 'SET_MIN_PRICE'
 const SET_MAX_PRICE = 'SET_MAX_PRICE'
+const SET_CATEGORIES = 'SET_CATEGORIES'
+const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -13,6 +15,8 @@ let initialState = {
     search: '' as string,
     minPrice: 0 as number,
     maxPrice: 500 as number,
+    categories: ['All'] as Array<string>,
+    currentCategory: 'All' as string
 };
 
 export type initialStateType = typeof initialState;
@@ -26,6 +30,8 @@ type actionsTypes = {
     search: string
     minPrice: number
     maxPrice: number
+    categories: Array<string>
+    currentCategory: string
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -54,6 +60,16 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
             return {
                 ...state,
                 maxPrice: action.maxPrice
+            }
+        case SET_CATEGORIES:
+            return {
+                ...state,
+                categories: [...state.categories, ...action.categories]
+            }
+        case SET_CURRENT_CATEGORY:
+            return {
+                ...state,
+                currentCategory: action.currentCategory
             }
         default: return state;
     }
@@ -109,13 +125,21 @@ type findMaxPriceType = {
 const findMaxPrice = (maxPrice: number): findMaxPriceType => ({ type: SET_MAX_PRICE, maxPrice })
 
 
-// type responseType = {
-//     data: Array<productsObject>
-//     headers: any
-//     status: number
-//     statusText: string
-//     config: Object
-// }
+type setCategoriesType = {
+    type: typeof SET_CATEGORIES,
+    categories: Array<string>
+}
+const __setCategories = (categories: Array<string>): setCategoriesType => ({ type: SET_CATEGORIES, categories })
+
+
+type setCurrentCategoryType = {
+    type: typeof SET_CURRENT_CATEGORY,
+    currentCategory: string
+}
+export const setCurrentCategory = (currentCategory: string): setCurrentCategoryType => ({ type: SET_CURRENT_CATEGORY, currentCategory })
+
+
+
 
 export const getProductsAC = () => async (dispatch: any) => {
     let response = await productsAPI.getProducts();
@@ -132,6 +156,10 @@ export const getProductsAC = () => async (dispatch: any) => {
     dispatch(findMinPrice(Math.ceil(array[0])));
     dispatch(findMaxPrice(maxPrice));
     dispatch(setPrice(maxPrice));
+}
+export const getCategoriesAC = () => async (dispatch: any) => {
+    let response = await productsAPI.getCategories();
+    dispatch(__setCategories(response.data));
 }
 
 

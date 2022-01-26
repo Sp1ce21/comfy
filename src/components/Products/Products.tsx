@@ -9,13 +9,12 @@ type Props = {
 }
 
 const Products: React.FC<Props> = ({ products }) => {
-
     return (
         <main className={s.main}>
             <PageName name='Products' />
             <div className='container'>
                 <div className={s.row}>
-                    <FilterContainer />
+                    <FilterContainer/>
                     <div className={s.items}>
                     { products.length !== 0 && products.map(product => <ProductItem image={product.image} title={product.title} price={product.price}/>)}
                     { products.length === 0 && <div className={s.title}>There aren't items. Try to change your filters</div> }
