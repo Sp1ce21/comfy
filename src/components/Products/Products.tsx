@@ -18,7 +18,6 @@ const Products: React.FC<Props> = ({ products }) => {
                     <FilterContainer />
                     <div className={s.items}>
                     { products.length !== 0 && products.map(product => <ProductItem image={product.image} title={product.title} price={product.price}/>)}
-                    {/* <ProductItem image={products[0].image} title={products[0].title} price={products[0].price}/> */}
                     </div>
                 </div>
             </div>

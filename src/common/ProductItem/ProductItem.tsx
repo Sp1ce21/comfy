@@ -10,8 +10,10 @@ const ProductItem: React.FC<Props> = ({ image, price, title }) => {
 
     return (
         <div className={s.item}>
-            <div className={s.imgContainer}><img src={image} alt="" /></div>
-            <div className={s.title}>{title}</div>
+            <div className={s.column}>
+                <div className={s.imgContainer}><img src={image} alt="" /></div>
+                <div className={s.title}>{title}</div>
+            </div>
             <div className={s.price}>${price}</div>
         </div>
     )
