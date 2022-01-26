@@ -4,3 +4,9 @@
 
     margin-top: 50px;
 }
+.items{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 23px;
+    margin-bottom: 80px;
+}

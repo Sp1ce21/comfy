@@ -22,10 +22,22 @@
     font-size: 20px;
     margin-bottom: 15px;
 }
+.list{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
 .list li{
     color: #617d98;
     font-size: 16px;
+    cursor: pointer;
+}
+.list li:hover{
+    text-decoration: underline;
 }
 .price{
     color: #617d98;
+}
+.range{
+    cursor: pointer;
 }

@@ -8,3 +8,6 @@
     align-items: center;
     justify-content: center;
 }
+.wrapper{
+    overflow-x: hidden;
+}
