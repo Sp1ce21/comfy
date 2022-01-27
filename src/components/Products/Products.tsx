@@ -8,19 +8,19 @@ type Props = {
     products: Array<productsObject>
     isBasket: boolean
 
-    getProductByIdAC: (productId: number) => void
+    setAddedProducts: (product: any) => void
 }
 
-const Products: React.FC<Props> = ({ products, isBasket, getProductByIdAC }) => {
+const Products: React.FC<Props> = ({ products, isBasket, setAddedProducts }) => {
     return (
         <main className={s.main}>
             <PageName name='Products' />
             <div className='container'>
                 <div className={s.row}>
-                    <FilterContainer/>
+                    <FilterContainer />
                     <div className={s.items}>
-                    { products.length !== 0 && products.map((product, index) => <ProductItem key={index} image={product.image} title={product.title} price={product.price} isBasket={isBasket} getProductByIdAC={getProductByIdAC} id={product.id}/>)}
-                    { products.length === 0 && <div className={s.title}>There aren't items. Try to change your filters</div> }
+                        {products.length !== 0 && products.map((product, index) => <ProductItem key={index} isBasket={isBasket} setAddedProducts={setAddedProducts} product={product} />)}
+                        {products.length === 0 && <div className={s.title}>There aren't items. Try to change your filters</div>}
                     </div>
                 </div>
             </div>

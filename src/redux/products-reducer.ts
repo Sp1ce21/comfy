@@ -165,7 +165,10 @@ type addedProductsType = {
     type: typeof SET_ADDED_PRODUCTS,
     addedProducts: any
 }
-const __setAddedProducts = (addedProducts: any): addedProductsType => ({ type: SET_ADDED_PRODUCTS, addedProducts })
+export const setAddedProducts = (addedProducts: any): addedProductsType => ({ type: SET_ADDED_PRODUCTS, addedProducts })
+
+
+
 
 
 export const getProductsAC = () => async (dispatch: any) => {
@@ -184,15 +187,19 @@ export const getProductsAC = () => async (dispatch: any) => {
     dispatch(findMaxPrice(maxPrice));
     dispatch(setPrice(maxPrice));
 }
+
+
 export const getCategoriesAC = () => async (dispatch: any) => {
     let response = await productsAPI.getCategories();
     dispatch(__setCategories(response.data));
 }
-export const getProductByIdAC = (productId: number) => async (dispatch: any) => {
-    let response = await productsAPI.getProductById(productId);
-    // debugger
-    dispatch(__setAddedProducts(response.data));
-}
+
+
+// export const getProductByIdAC = (productId: number) => async (dispatch: any) => {
+//     let response = await productsAPI.getProductById(productId);
+//     // debugger
+//     dispatch(__setAddedProducts(response.data));
+// }
 
 
 

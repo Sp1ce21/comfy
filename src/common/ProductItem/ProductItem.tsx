@@ -1,17 +1,15 @@
 import { useState } from 'react'
+import { productsObject } from '../../redux/products-reducer'
 import s from './ProductItem.module.css'
 
 type Props = {
-    image: string
-    price: number
-    title: string
     isBasket: boolean
-    id: number
+    product: productsObject
 
-    getProductByIdAC: (productId: number) => void
+    setAddedProducts: (product: any) => void
 }
 
-const ProductItem: React.FC<Props> = ({ image, price, title, isBasket, getProductByIdAC, id }) => {
+const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts,product}) => {
 
     let [isButton, setIsButton] = useState(false)
 
@@ -19,12 +17,12 @@ const ProductItem: React.FC<Props> = ({ image, price, title, isBasket, getProduc
         <div className={s.item} onMouseEnter={() => { !isBasket && setIsButton(true) }} onMouseLeave={() => { !isBasket && setIsButton(false) }} >
             <div className={s.column}>
                 <div className={s.imgContainer}>
-                    {isButton && <div className={s.button} onClick={()=>getProductByIdAC(id)}>Add to cart</div>}
-                    <img src={image} alt="" />
+                    {isButton && <div className={s.button} onClick={()=>setAddedProducts(product)}>Add to cart</div>}
+                    <img src={product.image} alt="" />
                 </div>
-                <div className={s.title}>{title}</div>
+                <div className={s.title}>{product.title}</div>
             </div>
-            <div className={s.price}>${price}</div>
+            <div className={s.price}>${product.price}</div>
         </div>
     )
 }

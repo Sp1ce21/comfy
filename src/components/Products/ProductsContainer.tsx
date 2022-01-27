@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { appStateType } from "../../redux/store"
 import Products from "./Products"
-import { getProductsAC, getCategoriesAC, productsObject, getProductByIdAC } from '../../redux/products-reducer'
+import { getProductsAC, getCategoriesAC, productsObject, setAddedProducts } from '../../redux/products-reducer'
 import { useEffect, useState } from "react"
 
 type Props = {
@@ -13,10 +13,10 @@ type Props = {
 
     getProductsAC: () => void
     getCategoriesAC: () => void
-    getProductByIdAC: (productId: number) => void
+    setAddedProducts: (product: any) => void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCategoriesAC, search, price, currentCategory, isBasket, getProductByIdAC }) => {
+const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCategoriesAC, search, price, currentCategory, isBasket, setAddedProducts }) => {
 
     let [needProducts, setNeedProducts] = useState(true)
     let [needCategories, setNeedCategories] = useState(true)
@@ -48,7 +48,7 @@ const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCatego
 
 
     return (
-        <Products products={filteredProducts} isBasket={isBasket} getProductByIdAC={getProductByIdAC}/>
+        <Products products={filteredProducts} isBasket={isBasket} setAddedProducts={setAddedProducts} />
     )
 }
 
@@ -61,4 +61,4 @@ let mapStateToProps = (state: appStateType) => ({
     isBasket: state.productsPage.isBasket,
 });
 
-export default connect(mapStateToProps, { getProductsAC, getCategoriesAC, getProductByIdAC })(ProductsContainer);
+export default connect(mapStateToProps, { getProductsAC, getCategoriesAC, setAddedProducts })(ProductsContainer);
