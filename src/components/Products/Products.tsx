@@ -12,6 +12,8 @@ type Props = {
 }
 
 const Products: React.FC<Props> = ({ products, isBasket, setAddedProducts }) => {
+    
+
     return (
         <main className={s.main}>
             <PageName name='Products' />

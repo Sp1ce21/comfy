@@ -1,79 +1,59 @@
-.busket {
-    width: 300px;
-    background-color: #f1f5f8;
-    min-height: 100%;
-
-    position: absolute;
-    top: 0;
-    right: -300px;
-
-    transition: 0.3s;
-
-    z-index: 1000;
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 15px;
 }
-.margin {
-    margin-top: 20px;
+/* .imgContainer{
+    background-color: white;
+    border: 1px solid #000;
+    max-width: 80px;
+    max-height: auto
+} */
+.imgContainer img {
+    max-height: 100px;
+    max-width: 50px;
+    object-fit: contain;
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 9px;
 }
-.active {
-    width: 300px;
-    background-color: #f1f5f8;
-    min-height: 100%;
-
-    position: absolute;
-    top: 0;
-    right: 0px;
-
-    transition: 0.3s;
-
-    z-index: 1000;
-}
-.button {
-    padding: 6px;
-    position: relative;
-    cursor: pointer;
-}
-.button span {
-    position: absolute;
-    width: 25px;
-    height: 4px;
-    background-color: #617d98;
-    border-radius: 5px;
-}
-.first {
-    transform: rotate(45deg);
-}
-.second {
-    transform: rotate(-45deg);
+.row {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 10px;
 }
 .column {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 88vh;
-
-    margin-top: 40px;
+    row-gap: 10px;
 }
-.title {
-}
-.downBlock{
+.infoColumn {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    row-gap: 5px;
 }
-.totalPrice{
-    margin-bottom: 20px;
-    font-size: 25px;
+.title {
+    color: #112942;
 }
-.checkoutButton{
-    text-transform: uppercase;
-    color: #fff;
-    background-color: #ba5d2c;
-    border-radius: 5px;
-    font-weight: 700;
-    padding: 7px 70px;
+.price {
+    color: #324d67;
+}
+.button {
+    color: #617d98;
     cursor: pointer;
 }
-.checkoutButton:hover{
-    background-color: #ba5e2ce3;
+.button:hover {
+    text-decoration: underline;
 }
+.arrows {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+}
+.down {
+    transform: rotate(180deg);
+}
+

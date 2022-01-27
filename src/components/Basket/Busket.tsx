@@ -4,7 +4,7 @@ import { Props } from './BusketContainer';
 import ProductItemCart from './ProductItem/ProductItemCart';
 
 const Busket: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
-    debugger
+
     let [myTimeoutOpen, setMyTimeoutOpen] = useState(true)
     let [isActiveBasket, setIsActiveBasket] = useState(false)
 
@@ -15,11 +15,19 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
                 setIsActiveBasket(true)
             }, 100);
         }
+
     }, [addedProducts])
+
+
+
+
 
     // localStorage.setItem('id', '1');
     // var a = localStorage.getItem('id');
     // alert(a)
+
+    // let a = {}
+    // localStorage.getItem('addedProducts') !== null && a = localStorage.getItem('addedProducts')
 
     return (
         <div className={isActiveBasket ? s.active : s.busket}>
@@ -30,10 +38,10 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
                 </div>
             </div>
             <div className={s.column}>
-                <div>
+                <div className={s.itemsColumn}>
                     <h2 className={s.title}>Your Bag</h2>
                     <div className={s.items}>
-                        {addedProducts.length !== 0 && addedProducts.map((product, index) => {
+                        {addedProducts.length !== 0 && addedProducts.map((product: any, index: number) => {
                             return <ProductItemCart product={product} key={index} />
                         })}
                     </div>
@@ -43,7 +51,7 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
                     <div className={s.checkoutButton}>checkout</div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
