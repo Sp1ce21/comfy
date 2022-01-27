@@ -4,12 +4,17 @@
 
     margin-top: 50px;
 }
-.items{
+.items {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 23px;
-    margin-bottom: 80px;
+    column-gap: 13px;
+    overflow-y: scroll;
+    max-height: 68vh;
 }
-.title{
+.items::-webkit-scrollbar {
+    display: none;
+}
+.title {
     color: #617d98;
 }
