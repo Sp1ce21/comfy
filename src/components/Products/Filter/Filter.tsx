@@ -8,8 +8,8 @@ const Filter: React.FC<Props> = ({ setPrice, setSearch, price, search, minPrice,
             <div className={s.companies}>
                 <div className={s.title}>Categories</div>
                 <ul className={s.list}>
-                    {categories.map(elem => {
-                        return <li className={currentCategory === elem ? s.active : s.unactive} onClick={() => setCurrentCategory(elem)}>{elem}</li>
+                    {categories.map((elem, index) => {
+                        return <li key={index} className={currentCategory === elem ? s.active : s.unactive} onClick={() => setCurrentCategory(elem)}>{elem}</li>
                     })}
                 </ul>
             </div>

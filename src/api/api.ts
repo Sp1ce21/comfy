@@ -11,6 +11,9 @@ export const productsAPI = {
     },
     getCategories(){
         return instance.get('products/categories')
+    },
+    getProductById(productId: number){
+        return instance.get(`products/${productId}`)
     }
 }
 

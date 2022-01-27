@@ -8,6 +8,7 @@ const SET_MAX_PRICE = 'SET_MAX_PRICE'
 const SET_CATEGORIES = 'SET_CATEGORIES'
 const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
 const SET_IS_BASKET = 'SET_IS_BASKET'
+const SET_ADDED_PRODUCTS = 'SET_ADDED_PRODUCTS'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -18,6 +19,7 @@ let initialState = {
     categories: ['All'] as Array<string>,
     currentCategory: 'All' as string,
     isBasket: false as boolean,
+    addedProducts: [] as any
 };
 
 export type initialStateType = typeof initialState;
@@ -34,6 +36,7 @@ type actionsTypes = {
     categories: Array<string>
     currentCategory: string
     isBasket: boolean
+    addedProducts: any
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -77,6 +80,11 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
             return {
                 ...state,
                 isBasket: action.isBasket
+            }
+        case SET_ADDED_PRODUCTS:
+            return {
+                ...state,
+                addedProducts: [...state.addedProducts, action.addedProducts]
             }
         default: return state;
     }
@@ -153,6 +161,12 @@ type setIsBasketType = {
 export const setIsBasket = (isBasket: boolean): setIsBasketType => ({ type: SET_IS_BASKET, isBasket })
 
 
+type addedProductsType = {
+    type: typeof SET_ADDED_PRODUCTS,
+    addedProducts: any
+}
+const __setAddedProducts = (addedProducts: any): addedProductsType => ({ type: SET_ADDED_PRODUCTS, addedProducts })
+
 
 export const getProductsAC = () => async (dispatch: any) => {
     let response = await productsAPI.getProducts();
@@ -174,7 +188,11 @@ export const getCategoriesAC = () => async (dispatch: any) => {
     let response = await productsAPI.getCategories();
     dispatch(__setCategories(response.data));
 }
-
+export const getProductByIdAC = (productId: number) => async (dispatch: any) => {
+    let response = await productsAPI.getProductById(productId);
+    // debugger
+    dispatch(__setAddedProducts(response.data));
+}
 
 
 
