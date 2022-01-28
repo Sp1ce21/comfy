@@ -17,7 +17,25 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    position: relative;
 }
-.container img{
+.container img {
     cursor: pointer;
+}
+.circle {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
 }
