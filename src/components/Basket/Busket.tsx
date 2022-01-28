@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import s from './Busket.module.css'
-import { Props } from './BusketContainer';
-import ProductItemCart from './ProductItem/ProductItemCart';
+import ProductItemCart from './ProductItemCart/ProductItemCart';
+
+type Props = {
+    addedProducts: any
+
+    setIsBasket: (isBasket: boolean) => void
+}
 
 const Busket: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
 
@@ -20,15 +25,6 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
 
 
 
-
-
-    // localStorage.setItem('id', '1');
-    // var a = localStorage.getItem('id');
-    // alert(a)
-
-    // let a = {}
-    // localStorage.getItem('addedProducts') !== null && a = localStorage.getItem('addedProducts')
-
     return (
         <div className={isActiveBasket ? s.active : s.busket}>
             <div className={s.margin}>
@@ -41,7 +37,7 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
                 <div className={s.itemsColumn}>
                     <h2 className={s.title}>Your Bag</h2>
                     <div className={s.items}>
-                        {addedProducts.length !== 0 && addedProducts.map((product: any, index: number) => {
+                        {addedProducts !== null && addedProducts.map((product: any, index: number) => {
                             return <ProductItemCart product={product} key={index} />
                         })}
                     </div>

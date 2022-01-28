@@ -9,7 +9,7 @@ type Props = {
     setAddedProducts: (product: any) => void
 }
 
-const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts,product}) => {
+const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product }) => {
 
     let [isButton, setIsButton] = useState(false)
 
@@ -17,7 +17,7 @@ const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts,product}) => 
         <div className={s.item} onMouseEnter={() => { !isBasket && setIsButton(true) }} onMouseLeave={() => { !isBasket && setIsButton(false) }} >
             <div className={s.column}>
                 <div className={s.imgContainer}>
-                    {isButton && <div className={s.button} onClick={()=>{setAddedProducts(product)}}>Add to cart</div>}
+                    {isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>}
                     <img src={product.image} alt="" />
                 </div>
                 <div className={s.title}>{product.title}</div>

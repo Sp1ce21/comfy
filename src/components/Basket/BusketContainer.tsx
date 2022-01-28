@@ -1,26 +1,31 @@
 import { connect } from "react-redux"
 import { appStateType } from "../../redux/store"
 import Busket from "./Busket"
-import { productsObject, setIsBasket } from '../../redux/products-reducer'
+import { productsObject, setIsBasket, setAddedProductsFromLocalStorage } from '../../redux/products-reducer'
 
-export type Props = {
+type Props = {
     addedProducts: Array<productsObject>
 
     setIsBasket: (isBasket: boolean) => void
+    setAddedProductsFromLocalStorage: (addedProducts: any) => void
 }
 
-const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
-    // debugger
+const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, setAddedProductsFromLocalStorage }) => {
+    debugger
 
+    let productsFromLocalStorage: any = localStorage.getItem('addedProducts');
+    let ownAddedProducts: any = JSON.parse(productsFromLocalStorage)
     if (addedProducts.length !== 0) {
-        localStorage.setItem('addedProducts', JSON.stringify(addedProducts));
+        localStorage['addedProducts'] = JSON.stringify(addedProducts);
     }
-    let localStorageProducts: any = localStorage.getItem('addedProducts')
-    console.log(JSON.parse(localStorageProducts))
-
+    else {
+        if (ownAddedProducts) {
+            setAddedProductsFromLocalStorage(ownAddedProducts)
+        }
+    }
 
     return (
-        <Busket setIsBasket={setIsBasket} addedProducts={localStorageProducts && JSON.parse(localStorageProducts) || addedProducts } />
+        <Busket setIsBasket={setIsBasket} addedProducts={addedProducts} />
     )
 }
 
@@ -29,4 +34,4 @@ let mapStateToProps = (state: appStateType) => ({
     addedProducts: state.productsPage.addedProducts,
 });
 
-export default connect(mapStateToProps, { setIsBasket })(BusketContainer);
+export default connect(mapStateToProps, { setIsBasket, setAddedProductsFromLocalStorage })(BusketContainer);

@@ -17,7 +17,7 @@ const ProductItemCart: React.FC<Props> = ({ product }) => {
                         <div className={s.title}>{product.title}</div>
                         <div className={s.price}>${product.price}</div>
                     </div>
-                    <div className={s.button}>remove</div>
+                    <div className={s.button} onClick={()=> { localStorage.removeItem(`product${product.id}`); }}>remove</div>
                 </div>
             </div>
             <div className={s.container}>

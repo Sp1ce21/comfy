@@ -9,6 +9,7 @@ const SET_CATEGORIES = 'SET_CATEGORIES'
 const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
 const SET_IS_BASKET = 'SET_IS_BASKET'
 const SET_ADDED_PRODUCTS = 'SET_ADDED_PRODUCTS'
+const SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE = 'SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -85,6 +86,11 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
             return {
                 ...state,
                 addedProducts: [...state.addedProducts, action.addedProducts]
+            }
+        case SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE:
+            return {
+                ...state,
+                addedProducts: action.addedProducts
             }
         default: return state;
     }
@@ -166,6 +172,13 @@ type addedProductsType = {
     addedProducts: any
 }
 export const setAddedProducts = (addedProducts: any): addedProductsType => ({ type: SET_ADDED_PRODUCTS, addedProducts })
+
+
+type addedProductsFromLocalStorageType = {
+    type: typeof SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE,
+    addedProducts: any
+}
+export const setAddedProductsFromLocalStorage = (addedProducts: any): addedProductsFromLocalStorageType => ({ type: SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE, addedProducts })
 
 
 
