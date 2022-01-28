@@ -16,7 +16,6 @@ type Props = {
 }
 
 const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, setAddedProductsFromLocalStorage, clearAddedProducts, setTotalPrice, clearTotalPrice }) => {
-    debugger
 
     let productsFromLocalStorage: any = localStorage.getItem('addedProducts');
     let ownAddedProducts: any = JSON.parse(productsFromLocalStorage)

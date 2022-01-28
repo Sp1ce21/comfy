@@ -5,11 +5,12 @@ import s from './ProductItem.module.css'
 type Props = {
     isBasket: boolean
     product: productsObject
+    addedProducts: any
 
-    setAddedProducts: (product: any) => void
+    setAddedProducts: (product: productsObject) => void
 }
 
-const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product }) => {
+const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product, addedProducts }) => {
 
     let [isButton, setIsButton] = useState(false)
 

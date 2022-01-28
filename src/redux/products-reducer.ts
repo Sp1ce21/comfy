@@ -1,3 +1,4 @@
+import { Dispatch } from 'redux';
 import { productsAPI } from './../api/api';
 
 const GET_PRODUCTS = 'GET_PRODUCTS'
@@ -139,7 +140,6 @@ export type productsObject = {
         count: number
     }
     title: string
-    quantity: number | null
 }
 
 
@@ -245,8 +245,12 @@ export const decreaseProductQuantity = (id: number): setDecreaseProductQuantityT
 
 
 
+// interface setProducts {
+//     type: IActions['GET_ALL_ASSETS'];
+//     loading: boolean;
+//   }
 
-export const getProductsAC = () => async (dispatch: any) => {
+export const getProductsAC = () => async (dispatch: Dispatch<productsType | findMinPriceType | findMaxPriceType | priceType>) => {
     let response = await productsAPI.getProducts();
     dispatch(setProducts(response.data));
 
@@ -264,18 +268,10 @@ export const getProductsAC = () => async (dispatch: any) => {
 }
 
 
-export const getCategoriesAC = () => async (dispatch: any) => {
+export const getCategoriesAC = () => async (dispatch: Dispatch<setCategoriesType>) => {
     let response = await productsAPI.getCategories();
     dispatch(__setCategories(response.data));
 }
-
-
-// export const getProductByIdAC = (productId: number) => async (dispatch: any) => {
-//     let response = await productsAPI.getProductById(productId);
-//     // debugger
-//     dispatch(__setAddedProducts(response.data));
-// }
-
 
 
 

@@ -11,7 +11,8 @@ import { setIsBasket } from './redux/products-reducer'
 
 type Props = {
     isBasket: boolean
-    setIsBasket: any
+
+    setIsBasket: (isBasket: boolean) => void
 }
 
 const AppContainer: React.FC<Props> = ({ isBasket, setIsBasket }) => {

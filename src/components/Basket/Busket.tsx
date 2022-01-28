@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { productsObject } from '../../redux/products-reducer';
 import s from './Busket.module.css'
 import ProductItemCart from './ProductItemCart/ProductItemCart';
 
@@ -43,7 +44,7 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clear
                     <h2 className={s.title}>Your Bag</h2>
                     {addedProducts !== null && <div>
                         <div className={s.items}>
-                            {addedProducts.map((product: any, index: number) => {
+                            {addedProducts.map((product: productsObject, index: number) => {
                                 return <ProductItemCart product={product} key={index} setTotalPrice={setTotalPrice} />
                             })}
                         </div>

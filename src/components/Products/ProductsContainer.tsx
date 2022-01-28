@@ -10,13 +10,14 @@ type Props = {
     price: number
     currentCategory: string
     isBasket: boolean
+    addedProducts: any
 
     getProductsAC: () => void
     getCategoriesAC: () => void
-    setAddedProducts: (product: any) => void
+    setAddedProducts: (product: productsObject) => void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCategoriesAC, search, price, currentCategory, isBasket, setAddedProducts }) => {
+const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCategoriesAC, search, price, currentCategory, isBasket, addedProducts, setAddedProducts }) => {
 
     let [needProducts, setNeedProducts] = useState(true)
     let [needCategories, setNeedCategories] = useState(true)
@@ -48,7 +49,7 @@ const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCatego
 
 
     return (
-        <Products products={filteredProducts} isBasket={isBasket} setAddedProducts={setAddedProducts} />
+        <Products products={filteredProducts} isBasket={isBasket} setAddedProducts={setAddedProducts} addedProducts={addedProducts}/>
     )
 }
 
@@ -59,6 +60,7 @@ let mapStateToProps = (state: appStateType) => ({
     maxPrice: state.productsPage.maxPrice,
     currentCategory: state.productsPage.currentCategory,
     isBasket: state.productsPage.isBasket,
+    addedProducts: state.productsPage.addedProducts
 });
 
 export default connect(mapStateToProps, { getProductsAC, getCategoriesAC, setAddedProducts })(ProductsContainer);
