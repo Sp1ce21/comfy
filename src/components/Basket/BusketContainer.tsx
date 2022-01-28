@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { appStateType } from "../../redux/store"
 import Busket from "./Busket"
-import { productsObject, setIsBasket, setAddedProductsFromLocalStorage, clearAddedProducts, setTotalPrice, clearTotalPrice } from '../../redux/products-reducer'
+import { productsObject, setIsBasket, clearAddedProducts, setTotalPrice, clearTotalPrice } from '../../redux/products-reducer'
 import { useLayoutEffect } from "react"
 
 type Props = {
@@ -9,24 +9,15 @@ type Props = {
     totalPrice: number
 
     setIsBasket: (isBasket: boolean) => void
-    setAddedProductsFromLocalStorage: (addedProducts: any) => void
+
     clearAddedProducts: ()=>void
     setTotalPrice: (totalPrice: number)=>void
     clearTotalPrice: ()=> void
 }
 
-const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, setAddedProductsFromLocalStorage, clearAddedProducts, setTotalPrice, clearTotalPrice }) => {
+const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clearAddedProducts, setTotalPrice, clearTotalPrice }) => {
 
-    let productsFromLocalStorage: any = localStorage.getItem('addedProducts');
-    let ownAddedProducts: any = JSON.parse(productsFromLocalStorage)
-    if (addedProducts.length !== 0) {
-        localStorage['addedProducts'] = JSON.stringify(addedProducts);
-    }
-    else {
-        if (ownAddedProducts) {
-            setAddedProductsFromLocalStorage(ownAddedProducts)
-        }
-    }
+    
 
 
     useLayoutEffect(() => {
@@ -47,4 +38,4 @@ let mapStateToProps = (state: appStateType) => ({
     totalPrice: state.productsPage.totalPrice
 });
 
-export default connect(mapStateToProps, { setIsBasket, setAddedProductsFromLocalStorage, clearAddedProducts, setTotalPrice, clearTotalPrice })(BusketContainer);
+export default connect(mapStateToProps, { setIsBasket, clearAddedProducts, setTotalPrice, clearTotalPrice })(BusketContainer);

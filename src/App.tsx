@@ -34,6 +34,7 @@ const App: React.FC<Props> = ({ isBasket, setIsBasket }) => {
                     <Switch>
                         <Route path='/about' render={() => <About />} />
                         <Route path='/products' render={() => <ProductsContainer />} />
+                        {/* <Route path='/products/' render={() => <About />} /> */}
                     </Switch>
                 </div>
 

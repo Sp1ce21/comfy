@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { appStateType } from "../../redux/store"
 import Products from "./Products"
-import { getProductsAC, getCategoriesAC, productsObject, setAddedProducts } from '../../redux/products-reducer'
+import { getProductsAC, getCategoriesAC, productsObject, setAddedProducts, setAddedProductsFromLocalStorage } from '../../redux/products-reducer'
 import { useEffect, useState } from "react"
 
 type Props = {
@@ -15,9 +15,10 @@ type Props = {
     getProductsAC: () => void
     getCategoriesAC: () => void
     setAddedProducts: (product: productsObject) => void
+    setAddedProductsFromLocalStorage: (addedProducts: any) => void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCategoriesAC, search, price, currentCategory, isBasket, addedProducts, setAddedProducts }) => {
+const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCategoriesAC, search, price, currentCategory, isBasket, addedProducts, setAddedProducts, setAddedProductsFromLocalStorage }) => {
 
     let [needProducts, setNeedProducts] = useState(true)
     let [needCategories, setNeedCategories] = useState(true)
@@ -48,8 +49,21 @@ const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCatego
 
 
 
+
+    let productsFromLocalStorage: any = localStorage.getItem('addedProducts');
+    let ownAddedProducts: any = JSON.parse(productsFromLocalStorage)
+    if (addedProducts.length !== 0) {
+        localStorage['addedProducts'] = JSON.stringify(addedProducts);
+    }
+    else {
+        if (ownAddedProducts) {
+            setAddedProductsFromLocalStorage(ownAddedProducts)
+        }
+    }
+
+
     return (
-        <Products products={filteredProducts} isBasket={isBasket} setAddedProducts={setAddedProducts} addedProducts={addedProducts}/>
+        <Products products={filteredProducts} isBasket={isBasket} setAddedProducts={setAddedProducts} addedProducts={addedProducts} />
     )
 }
 
@@ -63,4 +77,4 @@ let mapStateToProps = (state: appStateType) => ({
     addedProducts: state.productsPage.addedProducts
 });
 
-export default connect(mapStateToProps, { getProductsAC, getCategoriesAC, setAddedProducts })(ProductsContainer);
+export default connect(mapStateToProps, { getProductsAC, getCategoriesAC, setAddedProducts, setAddedProductsFromLocalStorage })(ProductsContainer);
