@@ -10,6 +10,11 @@ const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
 const SET_IS_BASKET = 'SET_IS_BASKET'
 const SET_ADDED_PRODUCTS = 'SET_ADDED_PRODUCTS'
 const SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE = 'SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE'
+const CLEAR_ADDED_PRODUCTS = 'CLEAR_ADDED_PRODUCTS'
+const SET_TOTAL_PRICE = 'SET_TOTAL_PRICE'
+const CLEAR_TOTAL_PRICE = 'CLEAR_TOTAL_PRICE'
+const SET_INCREASE_PRODUCT_QUANTITY = 'SET_INCREASE_PRODUCT_QUANTITY'
+const SET_DECREASE_PRODUCT_QUANTITY = 'SET_DECREASE_PRODUCT_QUANTITY'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -20,7 +25,8 @@ let initialState = {
     categories: ['All'] as Array<string>,
     currentCategory: 'All' as string,
     isBasket: false as boolean,
-    addedProducts: [] as any
+    addedProducts: [] as any,
+    totalPrice: 0 as number,
 };
 
 export type initialStateType = typeof initialState;
@@ -38,6 +44,8 @@ type actionsTypes = {
     currentCategory: string
     isBasket: boolean
     addedProducts: any
+    totalPrice: number
+    id: number
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -92,6 +100,29 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
                 ...state,
                 addedProducts: action.addedProducts
             }
+        case CLEAR_ADDED_PRODUCTS:
+            return {
+                ...state,
+                addedProducts: []
+            }
+        case SET_TOTAL_PRICE:
+            return {
+                ...state,
+                totalPrice: state.totalPrice + action.totalPrice
+            }
+        case CLEAR_TOTAL_PRICE:
+            return {
+                ...state,
+                totalPrice: 0
+            }
+        case SET_INCREASE_PRODUCT_QUANTITY:
+            return {
+                ...state,
+            }
+        case SET_DECREASE_PRODUCT_QUANTITY:
+            return {
+                ...state,
+            }
         default: return state;
     }
 }
@@ -108,6 +139,7 @@ export type productsObject = {
         count: number
     }
     title: string
+    quantity: number | null
 }
 
 
@@ -179,6 +211,36 @@ type addedProductsFromLocalStorageType = {
     addedProducts: any
 }
 export const setAddedProductsFromLocalStorage = (addedProducts: any): addedProductsFromLocalStorageType => ({ type: SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE, addedProducts })
+
+type clearAddedProductsType = {
+    type: typeof CLEAR_ADDED_PRODUCTS,
+}
+export const clearAddedProducts = (): clearAddedProductsType => ({ type: CLEAR_ADDED_PRODUCTS })
+
+
+type setTotalPriceType = {
+    type: typeof SET_TOTAL_PRICE,
+    totalPrice: number
+}
+export const setTotalPrice = (totalPrice: number): setTotalPriceType => ({ type: SET_TOTAL_PRICE, totalPrice })
+
+
+type clearTotalPriceType = {
+    type: typeof CLEAR_TOTAL_PRICE,
+}
+export const clearTotalPrice = (): clearTotalPriceType => ({ type: CLEAR_TOTAL_PRICE })
+
+type setIncreaseProductQuantityType = {
+    type: typeof SET_INCREASE_PRODUCT_QUANTITY,
+    id: number
+}
+export const increaseProductQuantity = (id: number): setIncreaseProductQuantityType => ({ type: SET_INCREASE_PRODUCT_QUANTITY, id })
+
+type setDecreaseProductQuantityType = {
+    type: typeof SET_DECREASE_PRODUCT_QUANTITY,
+    id: number
+}
+export const decreaseProductQuantity = (id: number): setDecreaseProductQuantityType => ({ type: SET_DECREASE_PRODUCT_QUANTITY, id })
 
 
 

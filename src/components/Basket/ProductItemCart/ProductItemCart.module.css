@@ -55,5 +55,8 @@
 }
 .down {
     transform: rotate(180deg);
+    cursor: pointer;
 }
-
+.up{
+    cursor: pointer;
+}

@@ -1,12 +1,25 @@
 import { productsObject } from '../../../redux/products-reducer';
 import s from './ProductItemCart.module.css'
 import arrow from '../../../assets/images/arrow.svg'
+import { useEffect, useState } from 'react';
 
 type Props = {
     product: productsObject
+
+    setTotalPrice: (totalPrice: number) => void
 }
 
-const ProductItemCart: React.FC<Props> = ({ product }) => {
+const ProductItemCart: React.FC<Props> = ({ product, setTotalPrice }) => {
+
+    let [needSettotalPrice, setNeedSettotalPrice] = useState(true)
+
+    useEffect(()=>{
+        if(needSettotalPrice){
+            setTotalPrice(product.price)
+            setNeedSettotalPrice(false)
+        }
+    })
+    
 
     return (
         <div className={s.item}>
@@ -17,7 +30,7 @@ const ProductItemCart: React.FC<Props> = ({ product }) => {
                         <div className={s.title}>{product.title}</div>
                         <div className={s.price}>${product.price}</div>
                     </div>
-                    <div className={s.button} onClick={()=> { localStorage.removeItem(`product${product.id}`); }}>remove</div>
+                    <div className={s.button} onClick={() => { localStorage.removeItem(`product${product.id}`); }}>remove</div>
                 </div>
             </div>
             <div className={s.container}>
