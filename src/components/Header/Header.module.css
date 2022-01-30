@@ -39,3 +39,15 @@
     font-size: 13px;
     color: white;
 }
+
+@media (max-width: 670px) {
+    /* .header {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .image {
+    }
+    .container {
+        flex: 0 0 50%;
+    } */
+}

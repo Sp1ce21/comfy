@@ -17,3 +17,18 @@
     margin: 50px auto 0;
     line-height: 30px;    
 }
+
+
+@media (max-width: 1050px){
+    .text{
+        width: 75%;
+    }
+}
+@media (max-width: 600px){
+    .text{
+        width: 90%;
+    }
+    .post .slash, .post h1 {
+        font-size: 40px;
+    }
+}
