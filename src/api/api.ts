@@ -14,6 +14,6 @@ export const productsAPI = {
     },
     getProductById(productId: number){
         return instance.get(`products/${productId}`)
-    }
+    },
 }
 

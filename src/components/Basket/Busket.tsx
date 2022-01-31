@@ -10,9 +10,10 @@ type Props = {
     setIsBasket: (isBasket: boolean) => void
     clearAddedProducts: () => void
     setTotalPrice: (totalPrice: number) => void
+    changeAddedProductsCallback: (id: number) => void
 }
 
-const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clearAddedProducts, setTotalPrice }) => {
+const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clearAddedProducts, setTotalPrice, changeAddedProductsCallback }) => {
 
     let [myTimeoutOpen, setMyTimeoutOpen] = useState(true)
     let [isActiveBasket, setIsActiveBasket] = useState(false)
@@ -24,11 +25,12 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clear
                 setIsActiveBasket(true)
             }, 100);
         }
-
-    }, [addedProducts])
-
+    }, [addedProducts, totalPrice])
 
 
+    // const UpdateAddedProductsCallback = () => {
+    //     UpdateAddedProducts(addedProducts)
+    // }
 
 
     return (
@@ -45,7 +47,7 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clear
                     {addedProducts !== null && <div>
                         <div className={s.items}>
                             {addedProducts.map((product: productsObject, index: number) => {
-                                return <ProductItemCart product={product} key={index} setTotalPrice={setTotalPrice} />
+                                return <ProductItemCart product={product} key={index} setTotalPrice={setTotalPrice} changeAddedProductsCallback={changeAddedProductsCallback} />
                             })}
                         </div>
                     </div>

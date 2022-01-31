@@ -17,6 +17,8 @@ const CLEAR_TOTAL_PRICE = 'CLEAR_TOTAL_PRICE'
 const SET_INCREASE_PRODUCT_QUANTITY = 'SET_INCREASE_PRODUCT_QUANTITY'
 const SET_DECREASE_PRODUCT_QUANTITY = 'SET_DECREASE_PRODUCT_QUANTITY'
 const SET_IS_ALL_PRODUCTS = 'SET_IS_ALL_PRODUCTS'
+const CHANGE_ADDED_PRODUCTS = 'CHANGE_ADDED_PRODUCTS'
+const SET_CURRENT_ITEM_ID = 'SET_CURRENT_ITEM_ID'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -29,7 +31,8 @@ let initialState = {
     isBasket: false as boolean,
     addedProducts: [] as any,
     totalPrice: 0 as number,
-    isAllProducts: false as boolean
+    isAllProducts: false as boolean,
+    currentItemId: null as number | null,
 };
 
 export type initialStateType = typeof initialState;
@@ -50,6 +53,7 @@ type actionsTypes = {
     totalPrice: number
     id: number
     isAllProducts: boolean
+    currentItemId: number | null
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -109,6 +113,11 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
                 ...state,
                 addedProducts: []
             }
+        case CHANGE_ADDED_PRODUCTS:
+            return {
+                ...state,
+                addedProducts: action.addedProducts
+            }
         case SET_TOTAL_PRICE:
             return {
                 ...state,
@@ -131,6 +140,11 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
             return {
                 ...state,
                 isAllProducts: !state.isAllProducts
+            }
+        case SET_CURRENT_ITEM_ID:
+            return {
+                ...state,
+                currentItemId: action.currentItemId
             }
         default: return state;
     }
@@ -214,6 +228,13 @@ type addedProductsType = {
 export const setAddedProducts = (addedProducts: any): addedProductsType => ({ type: SET_ADDED_PRODUCTS, addedProducts })
 
 
+type changeAddedProductsType = {
+    type: typeof CHANGE_ADDED_PRODUCTS,
+    addedProducts: any
+}
+export const changeAddedProducts = (addedProducts: any): changeAddedProductsType => ({ type: CHANGE_ADDED_PRODUCTS, addedProducts })
+
+
 type addedProductsFromLocalStorageType = {
     type: typeof SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE,
     addedProducts: any
@@ -258,6 +279,15 @@ export const setIsAllProducts = (): setIsAllProductsType => ({ type: SET_IS_ALL_
 
 
 
+type setCurrentItemIdType = {
+    type: typeof SET_CURRENT_ITEM_ID,
+    currentItemId: number | null
+}
+export const setCurrentItemId = (currentItemId: number | null): setCurrentItemIdType => ({ type: SET_CURRENT_ITEM_ID, currentItemId })
+
+
+
+
 
 export const getProductsAC = () => async (dispatch: Dispatch<productsType | findMinPriceType | findMaxPriceType | priceType>) => {
     let response = await productsAPI.getProducts();
@@ -282,6 +312,11 @@ export const getCategoriesAC = () => async (dispatch: Dispatch<setCategoriesType
     dispatch(__setCategories(response.data));
 }
 
+
+export const getProductById = (currentItemId: number) => async (dispatch: any) => {
+    let response = await productsAPI.getProductById(currentItemId);
+    dispatch(setCurrentItemId(response.data));
+}
 
 
 export default productsReducer;

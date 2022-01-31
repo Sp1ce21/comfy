@@ -16,6 +16,7 @@
     border: 1px #ccc solid;
     border-radius: 5px;
     position: relative;
+    z-index: 1;
 }
 .imgContainer img {
     width: 100%;
@@ -29,6 +30,7 @@
     color: #617d98;
     margin: 15px 0 10px;
     text-align: center;
+    text-decoration: none;
 }
 .title:hover {
     text-decoration: underline;

@@ -13,13 +13,14 @@ import HomeContainer from './components/Home/HomeContainer';
 type PropsContainer = {
     isBasket: boolean
     addedProducts: any
+    currentItemId: number | null
 
     setIsBasket: (isBasket: boolean) => void
     getProductsAC: () => void
     setAddedProductsFromLocalStorage: (addedProducts: any) => void
 }
 
-const AppContainer: React.FC<PropsContainer> = ({ isBasket, addedProducts, setIsBasket, getProductsAC, setAddedProductsFromLocalStorage }) => {
+const AppContainer: React.FC<PropsContainer> = ({ isBasket, addedProducts, currentItemId, setIsBasket, getProductsAC, setAddedProductsFromLocalStorage }) => {
 
     let [needProducts, setNeedProducts] = useState(true)
 
@@ -44,17 +45,18 @@ const AppContainer: React.FC<PropsContainer> = ({ isBasket, addedProducts, setIs
 
 
     return (
-        <App isBasket={isBasket} setIsBasket={setIsBasket} />
+        <App isBasket={isBasket} setIsBasket={setIsBasket} currentItemId={currentItemId} />
     );
 }
 
 type Props = {
     isBasket: boolean
+    currentItemId: number | null
 
     setIsBasket: (isBasket: boolean) => void
 }
 
-const App: React.FC<Props> = ({ isBasket, setIsBasket }) => {
+const App: React.FC<Props> = ({ isBasket, currentItemId, setIsBasket }) => {
     return (
         <div className={"wrapper" + ' ' + isBasket ? 'overflowHidden' : ''}>
             <div className='appRow'>
@@ -67,7 +69,8 @@ const App: React.FC<Props> = ({ isBasket, setIsBasket }) => {
                         </div>
                         <Switch>
                             <Route path='/about' render={() => <About />} />
-                            <Route path='/products' render={() => <ProductsContainer />} />
+                            <Route path='/products' exact render={() => <ProductsContainer />} />
+                            { currentItemId && <Route path={`/products${currentItemId}`} exact render={() => <About />} /> }
                         </Switch>
                     </div>
                 </Switch>
@@ -83,6 +86,7 @@ const App: React.FC<Props> = ({ isBasket, setIsBasket }) => {
 let mapStateToProps = (state: appStateType) => ({
     isBasket: state.productsPage.isBasket,
     addedProducts: state.productsPage.addedProducts,
+    currentItemId: state.productsPage.currentItemId,
 });
 
 

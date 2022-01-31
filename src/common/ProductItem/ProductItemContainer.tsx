@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { connect } from "react-redux"
-import { productsObject, setAddedProducts } from "../../redux/products-reducer"
+import { productsObject, setAddedProducts, getProductById } from "../../redux/products-reducer"
 import { appStateType } from "../../redux/store"
 import ProductItem from "./ProductItem"
 
@@ -10,13 +10,14 @@ export type Props = {
     addedProducts: any
 
     setAddedProducts: (product: productsObject) => void
+    getProductById: (currentItemId: number) => void
 }
 
-const ProductContainer: React.FC<Props> = ({ product, isBasket, addedProducts, setAddedProducts }) => {
+const ProductContainer: React.FC<Props> = ({ product, isBasket, addedProducts, setAddedProducts, getProductById }) => {
 
 
     return (
-        <ProductItem product={product} isBasket={isBasket} setAddedProducts={setAddedProducts} addedProducts={addedProducts}/>
+        <ProductItem product={product} isBasket={isBasket} setAddedProducts={setAddedProducts} addedProducts={addedProducts} getProductById={getProductById} />
     )
 }
 
@@ -26,4 +27,4 @@ let mapStateToProps = (state: appStateType) => ({
     addedProducts: state.productsPage.addedProducts,
 });
 
-export default connect(mapStateToProps, { setAddedProducts })(ProductContainer);
+export default connect(mapStateToProps, { setAddedProducts, getProductById })(ProductContainer);
