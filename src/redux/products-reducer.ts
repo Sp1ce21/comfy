@@ -19,6 +19,7 @@ const SET_DECREASE_PRODUCT_QUANTITY = 'SET_DECREASE_PRODUCT_QUANTITY'
 const SET_IS_ALL_PRODUCTS = 'SET_IS_ALL_PRODUCTS'
 const CHANGE_ADDED_PRODUCTS = 'CHANGE_ADDED_PRODUCTS'
 const SET_CURRENT_ITEM_ID = 'SET_CURRENT_ITEM_ID'
+const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -33,6 +34,7 @@ let initialState = {
     totalPrice: 0 as number,
     isAllProducts: false as boolean,
     currentItemId: null as number | null,
+    currentItem: {} as productsObject,
 };
 
 export type initialStateType = typeof initialState;
@@ -54,6 +56,7 @@ type actionsTypes = {
     id: number
     isAllProducts: boolean
     currentItemId: number | null
+    currentItem: productsObject
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -145,6 +148,11 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
             return {
                 ...state,
                 currentItemId: action.currentItemId
+            }
+        case SET_CURRENT_ITEM:
+            return {
+                ...state,
+                currentItem: action.currentItem
             }
         default: return state;
     }
@@ -286,6 +294,16 @@ type setCurrentItemIdType = {
 export const setCurrentItemId = (currentItemId: number | null): setCurrentItemIdType => ({ type: SET_CURRENT_ITEM_ID, currentItemId })
 
 
+type setCurrentItemType = {
+    type: typeof SET_CURRENT_ITEM,
+    currentItem: productsObject
+}
+export const setCurrentItem = (currentItem: productsObject): setCurrentItemType => ({ type: SET_CURRENT_ITEM, currentItem })
+
+
+
+
+
 
 
 
@@ -315,7 +333,7 @@ export const getCategoriesAC = () => async (dispatch: Dispatch<setCategoriesType
 
 export const getProductById = (currentItemId: number) => async (dispatch: any) => {
     let response = await productsAPI.getProductById(currentItemId);
-    dispatch(setCurrentItemId(response.data));
+    dispatch(setCurrentItem(response.data));
 }
 
 

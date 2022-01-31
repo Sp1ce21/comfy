@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import { productsObject } from '../../redux/products-reducer'
 import s from './ProductItem.module.css'
 
@@ -31,8 +30,8 @@ const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product, add
                         ? addedProducts.map((addedProduct: productsObject) => {
                             return (
                                 addedProduct.id === product.id && isButton && <div className={s.button}>Added</div>
-                                ||
-                                isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>
+                                // ||
+                                // isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>
                             )
                         })
                         : isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>

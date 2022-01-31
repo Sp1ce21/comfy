@@ -9,11 +9,12 @@ import { appStateType } from './redux/store';
 import BusketContainer from './components/Basket/BusketContainer';
 import { setIsBasket, getProductsAC, setAddedProductsFromLocalStorage } from './redux/products-reducer'
 import HomeContainer from './components/Home/HomeContainer';
+import ItemPageContainer from './components/ItemPage/ItemPageContainer';
 
 type PropsContainer = {
     isBasket: boolean
     addedProducts: any
-    currentItemId: number | null
+    currentItemId: any
 
     setIsBasket: (isBasket: boolean) => void
     getProductsAC: () => void
@@ -43,15 +44,24 @@ const AppContainer: React.FC<PropsContainer> = ({ isBasket, addedProducts, curre
         }
     }
 
+    let newCurrentItemId: number;
+    if (currentItemId) {
+        newCurrentItemId = currentItemId
+    }
+    else {
+        let link: any = document.location.pathname
+        newCurrentItemId = parseInt(link.match(/\d+/))
+    }
+
 
     return (
-        <App isBasket={isBasket} setIsBasket={setIsBasket} currentItemId={currentItemId} />
+        <App isBasket={isBasket} setIsBasket={setIsBasket} currentItemId={newCurrentItemId} />
     );
 }
 
 type Props = {
     isBasket: boolean
-    currentItemId: number | null
+    currentItemId: any
 
     setIsBasket: (isBasket: boolean) => void
 }
@@ -70,7 +80,7 @@ const App: React.FC<Props> = ({ isBasket, currentItemId, setIsBasket }) => {
                         <Switch>
                             <Route path='/about' render={() => <About />} />
                             <Route path='/products' exact render={() => <ProductsContainer />} />
-                            { currentItemId && <Route path={`/products${currentItemId}`} exact render={() => <About />} /> }
+                            <Route path={`/products/${currentItemId}`} exact render={() => <ItemPageContainer />} />
                         </Switch>
                     </div>
                 </Switch>
