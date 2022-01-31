@@ -1,0 +1,29 @@
+.wrapper {
+    background: url("../../assets/images/background.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    min-height: 100vh;
+}
+.titles {
+    margin-top: 30vh;
+    color: white;
+}
+.titles h1 {
+    font-size: 62px;
+    margin-bottom: 25px;
+}
+.titles h2 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+.titles a {
+    color: white;
+    text-decoration: none;
+    padding: 7px;
+    border: 1px #fff solid;
+    border-radius: 7px;
+    cursor: pointer;
+}

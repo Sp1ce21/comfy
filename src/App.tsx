@@ -8,6 +8,7 @@ import { connect, } from 'react-redux'
 import { appStateType } from './redux/store';
 import BusketContainer from './components/Basket/BusketContainer';
 import { setIsBasket } from './redux/products-reducer'
+import HomeContainer from './components/Home/HomeContainer';
 
 type Props = {
     isBasket: boolean
@@ -27,14 +28,14 @@ const App: React.FC<Props> = ({ isBasket, setIsBasket }) => {
         <div className={"wrapper" + ' ' + isBasket ? 'overflowHidden' : ''}>
             <div className='appRow'>
                 <div className={isBasket ? 'blackBackGround' : ''} onClick={() => { isBasket && setIsBasket(false) }}></div>
+                <Route path='/home' render={() => <HomeContainer />} />
                 <div className='pages'>
                     <div className="container">
-                        <HeaderContainer />
+                        <HeaderContainer logoStyleColor='#000' />
                     </div>
                     <Switch>
                         <Route path='/about' render={() => <About />} />
                         <Route path='/products' render={() => <ProductsContainer />} />
-                        {/* <Route path='/products/' render={() => <About />} /> */}
                     </Switch>
                 </div>
 

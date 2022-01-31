@@ -3,15 +3,16 @@ import Header from "./Header";
 import { setIsBasket } from '../../redux/products-reducer'
 import { appStateType } from "../../redux/store";
 
-export type Props = {
+type Props = {
     addedProducts: any
+    logoStyleColor: string
 
     setIsBasket: (isBasket: boolean)=>void
 }
 
-const HeaderContainer: React.FC<Props> = ({ setIsBasket, addedProducts }) => {
+const HeaderContainer: React.FC<Props> = ({ setIsBasket, addedProducts, logoStyleColor }) => {
     return (
-        <Header setIsBasket={setIsBasket} addedProducts={addedProducts}/>
+        <Header setIsBasket={setIsBasket} addedProducts={addedProducts} logoStyleColor={logoStyleColor}/>
     )
 }
 
