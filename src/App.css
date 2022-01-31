@@ -33,3 +33,18 @@
 body {
     box-sizing: border-box;
 }
+.button {
+    background-color: white;
+    border: 1px solid #000;
+    /* display: inline-block; */
+    padding: 5px 8px;
+    border-radius: 7px;
+    cursor: pointer;
+
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    z-index: 10;
+
+    /* display: block; */
+}
