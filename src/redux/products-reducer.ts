@@ -16,6 +16,7 @@ const SET_TOTAL_PRICE = 'SET_TOTAL_PRICE'
 const CLEAR_TOTAL_PRICE = 'CLEAR_TOTAL_PRICE'
 const SET_INCREASE_PRODUCT_QUANTITY = 'SET_INCREASE_PRODUCT_QUANTITY'
 const SET_DECREASE_PRODUCT_QUANTITY = 'SET_DECREASE_PRODUCT_QUANTITY'
+const SET_IS_ALL_PRODUCTS = 'SET_IS_ALL_PRODUCTS'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -28,6 +29,7 @@ let initialState = {
     isBasket: false as boolean,
     addedProducts: [] as any,
     totalPrice: 0 as number,
+    isAllProducts: false as boolean
 };
 
 export type initialStateType = typeof initialState;
@@ -47,6 +49,7 @@ type actionsTypes = {
     addedProducts: any
     totalPrice: number
     id: number
+    isAllProducts: boolean
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -116,13 +119,18 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
                 ...state,
                 totalPrice: 0
             }
-        case SET_INCREASE_PRODUCT_QUANTITY:
+        // case SET_INCREASE_PRODUCT_QUANTITY:
+        //     return {
+        //         ...state,
+        //     }
+        // case SET_DECREASE_PRODUCT_QUANTITY:
+        //     return {
+        //         ...state,
+        //     }
+        case SET_IS_ALL_PRODUCTS:
             return {
                 ...state,
-            }
-        case SET_DECREASE_PRODUCT_QUANTITY:
-            return {
-                ...state,
+                isAllProducts: !state.isAllProducts
             }
         default: return state;
     }
@@ -241,6 +249,12 @@ type setDecreaseProductQuantityType = {
     id: number
 }
 export const decreaseProductQuantity = (id: number): setDecreaseProductQuantityType => ({ type: SET_DECREASE_PRODUCT_QUANTITY, id })
+
+
+type setIsAllProductsType = {
+    type: typeof SET_IS_ALL_PRODUCTS,
+}
+export const setIsAllProducts = (): setIsAllProductsType => ({ type: SET_IS_ALL_PRODUCTS })
 
 
 

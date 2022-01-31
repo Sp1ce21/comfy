@@ -3,14 +3,13 @@ import { productsObject } from '../../redux/products-reducer'
 import s from './ProductItem.module.css'
 
 type Props = {
-    isBasket: boolean
     product: productsObject
-    addedProducts: any
+    isBasket: boolean
 
     setAddedProducts: (product: productsObject) => void
 }
 
-const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product, addedProducts }) => {
+const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product }) => {
 
     let [isButton, setIsButton] = useState(false)
 

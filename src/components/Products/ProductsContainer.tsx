@@ -9,25 +9,16 @@ type Props = {
     search: string
     price: number
     currentCategory: string
-    isBasket: boolean
     addedProducts: any
 
-    getProductsAC: () => void
     getCategoriesAC: () => void
-    setAddedProducts: (product: productsObject) => void
-    setAddedProductsFromLocalStorage: (addedProducts: any) => void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCategoriesAC, search, price, currentCategory, isBasket, addedProducts, setAddedProducts, setAddedProductsFromLocalStorage }) => {
+const ProductsContainer: React.FC<Props> = ({ products, getCategoriesAC, search, price, currentCategory, addedProducts}) => {
 
-    let [needProducts, setNeedProducts] = useState(true)
     let [needCategories, setNeedCategories] = useState(true)
 
     useEffect(() => {
-        if (needProducts) {
-            getProductsAC()
-            setNeedProducts(false)
-        }
         if (needCategories) {
             getCategoriesAC()
             setNeedCategories(false)
@@ -47,23 +38,8 @@ const ProductsContainer: React.FC<Props> = ({ products, getProductsAC, getCatego
     let filteredProducts = filteredWithCategoryProducts.filter((item => item.title.toLowerCase().includes(search.toLowerCase())))
 
 
-
-
-
-    let productsFromLocalStorage: any = localStorage.getItem('addedProducts');
-    let ownAddedProducts: any = JSON.parse(productsFromLocalStorage)
-    if (addedProducts.length !== 0) {
-        localStorage['addedProducts'] = JSON.stringify(addedProducts);
-    }
-    else {
-        if (ownAddedProducts) {
-            setAddedProductsFromLocalStorage(ownAddedProducts)
-        }
-    }
-
-
     return (
-        <Products products={filteredProducts} isBasket={isBasket} setAddedProducts={setAddedProducts} addedProducts={addedProducts} />
+        <Products products={filteredProducts} addedProducts={addedProducts} />
     )
 }
 
