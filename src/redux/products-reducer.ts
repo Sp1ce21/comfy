@@ -245,11 +245,6 @@ export const decreaseProductQuantity = (id: number): setDecreaseProductQuantityT
 
 
 
-// interface setProducts {
-//     type: IActions['GET_ALL_ASSETS'];
-//     loading: boolean;
-//   }
-
 export const getProductsAC = () => async (dispatch: Dispatch<productsType | findMinPriceType | findMaxPriceType | priceType>) => {
     let response = await productsAPI.getProducts();
     dispatch(setProducts(response.data));

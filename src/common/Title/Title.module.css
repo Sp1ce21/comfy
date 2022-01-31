@@ -1,0 +1,18 @@
+.slash {
+    color: #ba5d2c;
+    margin-right: 15px;
+}
+.slash,
+h1 {
+    font-size: 62px;
+}
+.title {
+    color: #112942;
+}
+
+@media (max-width: 600px) {
+    .post .slash,
+    .post h1 {
+        font-size: 40px;
+    }
+}
