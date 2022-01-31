@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { connect } from "react-redux";
 import { productsObject, getProductById } from "../../redux/products-reducer";
 import { appStateType } from "../../redux/store";
@@ -12,7 +11,6 @@ type Props = {
 }
 
 const ItemPageContainer: React.FC<Props> = ({ currentItem, currentItemId, getProductById }) => {
-debugger
     let newCurrentItemId: number;
     if (currentItemId) {
         getProductById(currentItemId)
@@ -24,7 +22,7 @@ debugger
     }
 
     return (
-        <ItemPage />
+        <ItemPage currentItem={currentItem}/>
     )
 }
 

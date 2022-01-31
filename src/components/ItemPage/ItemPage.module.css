@@ -1,0 +1,32 @@
+.mainBlock{
+    margin: 40px 15px;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 30px;
+}
+.mainBlock img {
+    width: 48vh;
+    height: 50vh;
+    object-fit: contain;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+}
+.column h1{
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+.description{
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+.item{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.item span{
+    font-weight: 700;
+}
