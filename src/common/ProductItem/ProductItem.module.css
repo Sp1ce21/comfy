@@ -8,7 +8,7 @@
 
     cursor: pointer;
 
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
 }
 .imgContainer {
     width: 300px;
@@ -43,7 +43,7 @@
     flex-direction: column;
     align-items: center;
 }
-.button{
+.button {
     background-color: white;
     border: 1px solid #000;
     /* display: inline-block; */
@@ -58,6 +58,16 @@
 
     /* display: block; */
 }
-.button:hover{
-    background-color: rgb(196, 196, 196)
+.button:hover {
+    background-color: rgb(196, 196, 196);
+}
+
+@media (max-width: 340px) {
+    .item {
+        max-width: 260px;
+    }
+    .imgContainer {
+        max-width: 260px;
+        height: 160px;
+    }
 }

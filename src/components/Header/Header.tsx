@@ -15,7 +15,7 @@ const Header: React.FC<Props> = ({ setIsBasket, addedProducts, logoStyleColor })
 
     return (
         <header className={s.header}>
-            <Navigation logoStyleColor={logoStyleColor}/>
+            <Navigation logoStyleColor={logoStyleColor} />
             <NavLink to='/home' className={s.logo} style={{ color: `${logoStyleColor}` }}>Comfy</NavLink>
             <div className={s.container}>
                 {addedProducts.length !== 0 && <div className={s.circle}>{addedProducts.length}</div>}

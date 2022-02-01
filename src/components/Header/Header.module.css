@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: 100%;
 }
 .image {
     width: 120px;
@@ -44,19 +45,22 @@
     font-size: 13px;
     color: white;
 }
-.basket{
-    /* color: white; */
-}
 
-
-@media (max-width: 670px) {
-    /* .header {
-        flex-direction: column;
+@media (max-width: 850px) {
+    .header {
         justify-content: space-between;
+        flex-wrap: wrap;
+        row-gap: 30px;
     }
-    .image {
+    .basket {
+        order: 1;
     }
     .container {
-        flex: 0 0 50%;
-    } */
+        width: unset;
+    }
+    .logo {
+        flex: 0 0 100%;
+        order: 2;
+        text-align: center;
+    }
 }
