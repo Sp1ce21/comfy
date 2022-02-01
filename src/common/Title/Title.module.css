@@ -11,8 +11,8 @@ h1 {
 }
 
 @media (max-width: 600px) {
-    .post .slash,
-    .post h1 {
+    .slash,
+    h1 {
         font-size: 40px;
     }
 }

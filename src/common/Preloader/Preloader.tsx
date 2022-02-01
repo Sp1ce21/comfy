@@ -1,9 +1,12 @@
 import preloader from "../../assets/Preloader/Preloader.gif";
+import s from './Preloader.module.css'
 
 const Preloader = () => {
-    return <div>
-        <img src={preloader} alt="preloader" />
-    </div>
+    return (
+        <div className={s.preloader}>
+            <img src={preloader} alt="preloader" />
+        </div>
+    )
 }
 
 export default Preloader;
