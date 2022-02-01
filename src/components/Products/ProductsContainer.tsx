@@ -10,11 +10,12 @@ type Props = {
     price: number
     currentCategory: string
     addedProducts: any
+    isFetching: boolean
 
     getCategoriesAC: () => void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getCategoriesAC, search, price, currentCategory, addedProducts}) => {
+const ProductsContainer: React.FC<Props> = ({ products, getCategoriesAC, search, price, currentCategory, addedProducts, isFetching}) => {
 
     let [needCategories, setNeedCategories] = useState(true)
 
@@ -39,7 +40,7 @@ const ProductsContainer: React.FC<Props> = ({ products, getCategoriesAC, search,
 
 
     return (
-        <Products products={filteredProducts} addedProducts={addedProducts} />
+        <Products products={filteredProducts} addedProducts={addedProducts} isFetching={isFetching}/>
     )
 }
 
@@ -50,7 +51,8 @@ let mapStateToProps = (state: appStateType) => ({
     maxPrice: state.productsPage.maxPrice,
     currentCategory: state.productsPage.currentCategory,
     isBasket: state.productsPage.isBasket,
-    addedProducts: state.productsPage.addedProducts
+    addedProducts: state.productsPage.addedProducts,
+    isFetching: state.productsPage.isFetching
 });
 
 export default connect(mapStateToProps, { getProductsAC, getCategoriesAC, setAddedProducts, setAddedProductsFromLocalStorage })(ProductsContainer);

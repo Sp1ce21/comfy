@@ -6,11 +6,12 @@ import ItemPage from "./ItemPage";
 type Props = {
     currentItem: productsObject
     currentItemId: number | null
+    isFetching: boolean
 
     getProductById: (currentItemId: number) => void
 }
 
-const ItemPageContainer: React.FC<Props> = ({ currentItem, currentItemId, getProductById }) => {
+const ItemPageContainer: React.FC<Props> = ({ currentItem, currentItemId, isFetching, getProductById }) => {
     let newCurrentItemId: number;
     if (currentItemId) {
         getProductById(currentItemId)
@@ -22,13 +23,14 @@ const ItemPageContainer: React.FC<Props> = ({ currentItem, currentItemId, getPro
     }
 
     return (
-        <ItemPage currentItem={currentItem}/>
+        <ItemPage currentItem={currentItem} isFetching={isFetching}/>
     )
 }
 
 let mapStateToProps = (state: appStateType) => ({
     currentItem: state.productsPage.currentItem,
     currentItemId: state.productsPage.currentItemId,
+    isFetching: state.productsPage.isFetching,
 });
 
 export default connect(mapStateToProps, { getProductById })(ItemPageContainer);

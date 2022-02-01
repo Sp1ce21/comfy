@@ -37,9 +37,9 @@ const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product, add
                         : isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>
 
                     }
-                    <img src={product.image} alt="Product image" onClick={() =>{ getProductById(product.id); openNewWindow()}} />
+                    <img src={product.image} alt="Product image" onClick={() => { getProductById(product.id); openNewWindow() }} />
                 </div>
-                <div onClick={() => { getProductById(product.id); openNewWindow()}} className={s.title}>{product.title}</div>
+                <div onClick={() => { getProductById(product.id); openNewWindow() }} className={s.title}>{product.title}</div>
             </div>
             <div className={s.price}>${product.price}</div>
         </div>

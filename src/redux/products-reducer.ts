@@ -20,6 +20,7 @@ const SET_IS_ALL_PRODUCTS = 'SET_IS_ALL_PRODUCTS'
 const CHANGE_ADDED_PRODUCTS = 'CHANGE_ADDED_PRODUCTS'
 const SET_CURRENT_ITEM_ID = 'SET_CURRENT_ITEM_ID'
 const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
+const SET_IS_FETCHING = 'SET_IS_FETCHING'
 
 let initialState = {
     products: [] as Array<productsObject>,
@@ -35,6 +36,7 @@ let initialState = {
     isAllProducts: false as boolean,
     currentItemId: null as number | null,
     currentItem: {} as productsObject,
+    isFetching: false as boolean
 };
 
 export type initialStateType = typeof initialState;
@@ -57,6 +59,7 @@ type actionsTypes = {
     isAllProducts: boolean
     currentItemId: number | null
     currentItem: productsObject
+    isFetching: boolean
 }
 
 const productsReducer = (state = initialState, action: actionsTypes): initialStateType => {
@@ -153,6 +156,11 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
             return {
                 ...state,
                 currentItem: action.currentItem
+            }
+        case SET_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default: return state;
     }
@@ -301,16 +309,24 @@ type setCurrentItemType = {
 export const setCurrentItem = (currentItem: productsObject): setCurrentItemType => ({ type: SET_CURRENT_ITEM, currentItem })
 
 
+type setIsFetchingType = {
+    type: typeof SET_IS_FETCHING,
+    isFetching: boolean
+}
+export const setIsFetching = (isFetching: boolean): setIsFetchingType => ({ type: SET_IS_FETCHING, isFetching })
 
 
 
 
 
 
-export const getProductsAC = () => async (dispatch: Dispatch<productsType | findMinPriceType | findMaxPriceType | priceType>) => {
+
+
+export const getProductsAC = () => async (dispatch: Dispatch<productsType | findMinPriceType | findMaxPriceType | priceType | setIsFetchingType>) => {
+    dispatch(setIsFetching(true))
     let response = await productsAPI.getProducts();
     dispatch(setProducts(response.data));
-
+    dispatch(setIsFetching(false))
     let array = []
     for (let elem of response.data) {
         array.push(elem.price)
@@ -322,6 +338,7 @@ export const getProductsAC = () => async (dispatch: Dispatch<productsType | find
     dispatch(findMinPrice(Math.ceil(array[0])));
     dispatch(findMaxPrice(maxPrice));
     dispatch(setPrice(maxPrice));
+    
 }
 
 

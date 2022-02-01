@@ -1,4 +1,5 @@
 import PageName from '../../common/PageName/PageName';
+import Preloader from '../../common/Preloader/Preloader';
 import ProductItemContainer from '../../common/ProductItem/ProductItemContainer';
 import { productsObject } from '../../redux/products-reducer';
 import FilterContainer from './Filter/FilterContainer';
@@ -7,9 +8,10 @@ import s from './Products.module.css'
 type Props = {
     products: Array<productsObject>
     addedProducts: any
+    isFetching: boolean
 }
 
-const Products: React.FC<Props> = ({ products }) => {
+const Products: React.FC<Props> = ({ products, isFetching }) => {
 
 
     return (
@@ -18,10 +20,12 @@ const Products: React.FC<Props> = ({ products }) => {
             <div className='container'>
                 <div className={s.row}>
                     <FilterContainer />
-                    <div className={s.items}>
-                        {products.length !== 0 && products.map((product, index) => <ProductItemContainer key={index} product={product} />)}
-                        {products.length === 0 && <div className={s.title}>There aren't items. Try to change your filters</div>}
-                    </div>
+                    {isFetching
+                        ? <Preloader />
+                        : <div className={s.items}>
+                            {products.length !== 0 && products.map((product, index) => <ProductItemContainer key={index} product={product} />)}
+                            {products.length === 0 && <div className={s.title}>There aren't items. Try to change your filters</div>}
+                        </div>}
                 </div>
             </div>
         </main>

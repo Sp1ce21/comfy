@@ -1,27 +1,29 @@
 import PageName from '../../common/PageName/PageName';
+import Preloader from '../../common/Preloader/Preloader';
 import { productsObject } from '../../redux/products-reducer';
 import s from './ItemPage.module.css'
 
 type Props = {
     currentItem: productsObject
+    isFetching: boolean
 }
 
-const ItemPage: React.FC<Props> = ({ currentItem }) => {
+const ItemPage: React.FC<Props> = ({ currentItem, isFetching }) => {
     debugger
     return (
         <main>
             <PageName name='Item' />
-            <div className={s.mainBlock}>
+            {isFetching
+                ? <Preloader />
+                : <div className={s.mainBlock}>
                     <img src={currentItem.image} alt="Product image" />
                     <div className={s.column}>
                         <h1>{currentItem.title}</h1>
                         <div className={s.description}>{currentItem.description}</div>
                         <div className={s.item}><span>Category:</span> {currentItem.category}</div>
                         <div className={s.item}><span>Price:</span> ${currentItem.price}</div>
-                        {/* <div className={s.item}><span>Rating:</span> {currentItem.rating.rate}</div> */}
-                        {/* <div className={s.item}><span>Count:</span> {currentItem.rating.count}</div> */}
                     </div>
-            </div>
+                </div>}
         </main>
     )
 }
