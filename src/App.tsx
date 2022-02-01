@@ -10,6 +10,7 @@ import BusketContainer from './components/Basket/BusketContainer';
 import { setIsBasket, getProductsAC, setAddedProductsFromLocalStorage } from './redux/products-reducer'
 import HomeContainer from './components/Home/HomeContainer';
 import ItemPageContainer from './components/ItemPage/ItemPageContainer';
+import LoginContainer from './components/Login/LoginContainer';
 
 type PropsContainer = {
     isBasket: boolean
@@ -81,6 +82,7 @@ const App: React.FC<Props> = ({ isBasket, currentItemId, setIsBasket }) => {
                             <Route path='/about' render={() => <About />} />
                             <Route path='/products' exact render={() => <ProductsContainer />} />
                             <Route path={`/products/${currentItemId}`} exact render={() => <ItemPageContainer />} />
+                            <Route path='/login' render={() => <LoginContainer />} />
                         </Switch>
                     </div>
                 </Switch>

@@ -18,6 +18,9 @@ const Navigation: React.FC<Props> = ({ logoStyleColor }) => {
                 <li>
                     <NavLink to='/about' className={s.link} style={{ color: `${logoStyleColor}` }}>About</NavLink>
                 </li>
+                <li>
+                    <NavLink to='/login' className={s.link} style={{ color: `${logoStyleColor}` }}>Login</NavLink>
+                </li>
             </ul>
         </nav>
     )
