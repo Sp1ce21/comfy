@@ -19,15 +19,15 @@ export const isUpperCase = (value: string) => {
     let count = 0
     while (i <= value.length) {
         let arr = Array.from(value);
-        for(let elem of arr){
-            if(elem === elem.toUpperCase()){
+        for (let elem of arr) {
+            if (elem === elem.toUpperCase()) {
                 return undefined
             }
             else {
                 count++
             }
         }
-        if(value.length === count){
+        if (value.length === count) {
             return 'Please enter at least one uppercase letter'
         }
     }
@@ -37,16 +37,16 @@ export const isLowerCase = (value: string) => {
     let count = 0
     while (i <= value.length) {
         let arr = Array.from(value);
-        for(let elem of arr){
-            if(elem === elem.toLowerCase()){
+        for (let elem of arr) {
+            if (elem === elem.toLowerCase()) {
                 return undefined
             }
             else {
                 count++
             }
         }
-        if(value.length === count){
-            return 'Please enter at least one uppercase letter'
+        if (value.length === count) {
+            return 'Please enter at least one lowercase letter'
         }
     }
 }
