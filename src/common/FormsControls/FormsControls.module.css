@@ -1,11 +1,18 @@
-/* .formControl{
-
-} */
-
+.formControl {
+    position: relative;
+}
 .error input,
-.error textarea{
-    border: 2px solid red
+.error textarea {
+    border: 2px solid red;
 }
 .error span {
+    padding: 6px 10px 6px 15px;
+    border: 1px solid #ccc;
+    top: 7px;
+    left: 310px;
+    position: absolute;
     color: red;
+    background-color: rgb(247, 247, 247);
+    border-radius: 100px 30px 30px 0px;
+    white-space: nowrap;
 }
