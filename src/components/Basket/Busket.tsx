@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { productsObject } from '../../redux/products-reducer';
 import s from './Busket.module.css'
 import ProductItemCart from './ProductItemCart/ProductItemCart';
@@ -10,10 +10,11 @@ type Props = {
     setIsBasket: (isBasket: boolean) => void
     clearAddedProducts: () => void
     setTotalPrice: (totalPrice: number) => void
+    clearTotalPrice: () => void
     changeAddedProductsCallback: (id: number) => void
 }
 
-const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clearAddedProducts, setTotalPrice, changeAddedProductsCallback }) => {
+const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clearAddedProducts, setTotalPrice, changeAddedProductsCallback, clearTotalPrice }) => {
 
     let [myTimeoutOpen, setMyTimeoutOpen] = useState(true)
     let [isActiveBasket, setIsActiveBasket] = useState(false)
@@ -28,10 +29,11 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clear
     }, [addedProducts, totalPrice])
 
 
-    // const UpdateAddedProductsCallback = () => {
-    //     UpdateAddedProducts(addedProducts)
-    // }
-
+    useLayoutEffect(() => {
+        return () => {
+            // clearTotalPrice()
+        }
+    }, [totalPrice])
 
     return (
         <div className={isActiveBasket ? s.active : s.busket}>

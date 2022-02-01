@@ -15,7 +15,11 @@ const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product, add
 
 
     let [isButton, setIsButton] = useState(false)
+    let [isAddToCart, setIsAddToCart] = useState(true)
 
+    useEffect(()=>{
+        console.log('rerendered ', isAddToCart)
+    }, [isAddToCart])
 
     const openNewWindow = () => {
         window.open(`products/${product.id}`)
@@ -27,11 +31,13 @@ const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product, add
                 <div className={s.imgContainer}>
                     {addedProducts.length !== 0
 
-                        ? addedProducts.map((addedProduct: productsObject) => {
+                        ? addedProducts.map((addedProduct: productsObject, index: number) => {
                             return (
-                                addedProduct.id === product.id && isButton && <div className={s.button}>Added</div>
-                                // ||
-                                // isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>
+                                // addedProduct.id === product.id
+                                //     ? isButton && <div key={index} className={s.button}>Added</div> && setIsAddToCart(false)
+                                //     : isButton && isAddToCart && <div key={index} className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>
+                                // null
+                                isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>
                             )
                         })
                         : isButton && <div className={s.button} onClick={() => { setAddedProducts(product) }}>Add to cart</div>

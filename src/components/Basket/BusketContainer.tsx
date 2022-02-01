@@ -22,10 +22,8 @@ const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, totalPri
 
 
     useLayoutEffect(() => {
-        return () => {
-            clearTotalPrice()
-        }
-    }, [totalPrice])
+        return () => clearTotalPrice()
+    }, [])
 
     const changeAddedProductsCallback = (id: number) => {
         let newAddedProducts: any;
@@ -51,7 +49,7 @@ const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, totalPri
     }
 
     return (
-        <Busket setIsBasket={setIsBasket} addedProducts={addedProducts} clearAddedProducts={clearAddedProducts} totalPrice={totalPrice} setTotalPrice={setTotalPrice} changeAddedProductsCallback={changeAddedProductsCallback} />
+        <Busket setIsBasket={setIsBasket} addedProducts={addedProducts} clearAddedProducts={clearAddedProducts} totalPrice={totalPrice} setTotalPrice={setTotalPrice} changeAddedProductsCallback={changeAddedProductsCallback} clearTotalPrice={clearTotalPrice}/>
     )
 }
 
