@@ -1,10 +1,17 @@
 import PageName from '../../common/PageName/PageName';
 import { LoginReduxForm } from './Form/Form';
 
+
+export type formData = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
+
 const Login: React.FC = () => {
 
-    const onSubmit = (formData: any) => {
-        console.log(formData);
+    const onSubmit = (formData: formData) => {
+        // console.log(formData);
     }
 
     return (

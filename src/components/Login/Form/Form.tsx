@@ -1,15 +1,16 @@
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { Input } from '../../../common/FormsControls/FormsControls'
 import { required, maxLength, requiredA, number, isUpperCase, isLowerCase } from '../../../utils/validators/validators';
+import { formData } from '../Login';
 import s from './Form.module.css'
 
 type Props = {
-
+    onSubmit: (formData: formData) => void
 }
 
 const maxLength30 = maxLength(30)
 
-const Form: React.FC<any> = ({ handleSubmit }) => {
+const Form: React.FC<InjectedFormProps<formData, Props> & Props> = ({ handleSubmit }) => {
 
 
     return (
@@ -30,6 +31,6 @@ const Form: React.FC<any> = ({ handleSubmit }) => {
 }
 
 
-export const LoginReduxForm = reduxForm({ form: 'login' })(Form)
+export const LoginReduxForm = reduxForm<formData, Props>({ form: 'login' })(Form)
 
 export default Form;
