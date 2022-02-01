@@ -14,8 +14,6 @@ const SET_ADDED_PRODUCT_FROM_LOCAL_STORAGE = 'SET_ADDED_PRODUCT_FROM_LOCAL_STORA
 const CLEAR_ADDED_PRODUCTS = 'CLEAR_ADDED_PRODUCTS'
 const SET_TOTAL_PRICE = 'SET_TOTAL_PRICE'
 const CLEAR_TOTAL_PRICE = 'CLEAR_TOTAL_PRICE'
-const SET_INCREASE_PRODUCT_QUANTITY = 'SET_INCREASE_PRODUCT_QUANTITY'
-const SET_DECREASE_PRODUCT_QUANTITY = 'SET_DECREASE_PRODUCT_QUANTITY'
 const SET_IS_ALL_PRODUCTS = 'SET_IS_ALL_PRODUCTS'
 const CHANGE_ADDED_PRODUCTS = 'CHANGE_ADDED_PRODUCTS'
 const SET_CURRENT_ITEM_ID = 'SET_CURRENT_ITEM_ID'
@@ -134,14 +132,7 @@ const productsReducer = (state = initialState, action: actionsTypes): initialSta
                 ...state,
                 totalPrice: 0
             }
-        // case SET_INCREASE_PRODUCT_QUANTITY:
-        //     return {
-        //         ...state,
-        //     }
-        // case SET_DECREASE_PRODUCT_QUANTITY:
-        //     return {
-        //         ...state,
-        //     }
+
         case SET_IS_ALL_PRODUCTS:
             return {
                 ...state,
@@ -275,18 +266,6 @@ type clearTotalPriceType = {
 }
 export const clearTotalPrice = (): clearTotalPriceType => ({ type: CLEAR_TOTAL_PRICE })
 
-type setIncreaseProductQuantityType = {
-    type: typeof SET_INCREASE_PRODUCT_QUANTITY,
-    id: number
-}
-export const increaseProductQuantity = (id: number): setIncreaseProductQuantityType => ({ type: SET_INCREASE_PRODUCT_QUANTITY, id })
-
-type setDecreaseProductQuantityType = {
-    type: typeof SET_DECREASE_PRODUCT_QUANTITY,
-    id: number
-}
-export const decreaseProductQuantity = (id: number): setDecreaseProductQuantityType => ({ type: SET_DECREASE_PRODUCT_QUANTITY, id })
-
 
 type setIsAllProductsType = {
     type: typeof SET_IS_ALL_PRODUCTS,
@@ -338,7 +317,7 @@ export const getProductsAC = () => async (dispatch: Dispatch<productsType | find
     dispatch(findMinPrice(Math.ceil(array[0])));
     dispatch(findMaxPrice(maxPrice));
     dispatch(setPrice(maxPrice));
-    
+
 }
 
 
@@ -348,7 +327,7 @@ export const getCategoriesAC = () => async (dispatch: Dispatch<setCategoriesType
 }
 
 
-export const getProductById = (currentItemId: number) => async (dispatch: any) => {
+export const getProductById = (currentItemId: number) => async (dispatch: Dispatch<setCurrentItemType>) => {
     let response = await productsAPI.getProductById(currentItemId);
     dispatch(setCurrentItem(response.data));
 }

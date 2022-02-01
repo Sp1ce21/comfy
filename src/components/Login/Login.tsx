@@ -1,21 +1,16 @@
 import PageName from '../../common/PageName/PageName';
-import s from './Login.module.css'
 import { LoginReduxForm } from './Form/Form';
 
-type Props = {
-
-}
-
-const Login: React.FC<Props> = ({  }) => {
+const Login: React.FC = () => {
 
     const onSubmit = (formData: any) => {
         console.log(formData);
     }
 
     return (
-        <main className={s.login}>
+        <main>
             <PageName name='Login' />
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit} />
         </main>
     )
 }

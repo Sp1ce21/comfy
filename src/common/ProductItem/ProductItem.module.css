@@ -3,11 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
     max-width: 300px;
-
     cursor: pointer;
-
     margin-bottom: 20px;
 }
 .imgContainer {
@@ -46,17 +43,13 @@
 .button {
     background-color: white;
     border: 1px solid #000;
-    /* display: inline-block; */
     padding: 5px 8px;
     border-radius: 7px;
     cursor: pointer;
-
     position: absolute;
     right: 4px;
     bottom: 4px;
     z-index: 10;
-
-    /* display: block; */
 }
 .button:hover {
     background-color: rgb(196, 196, 196);

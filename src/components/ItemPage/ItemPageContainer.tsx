@@ -23,7 +23,7 @@ const ItemPageContainer: React.FC<Props> = ({ currentItem, currentItemId, isFetc
     }
 
     return (
-        <ItemPage currentItem={currentItem} isFetching={isFetching}/>
+        <ItemPage currentItem={currentItem} isFetching={isFetching} />
     )
 }
 

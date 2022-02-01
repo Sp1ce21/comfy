@@ -9,13 +9,12 @@ type Props = {
     search: string
     price: number
     currentCategory: string
-    addedProducts: any
     isFetching: boolean
 
     getCategoriesAC: () => void
 }
 
-const ProductsContainer: React.FC<Props> = ({ products, getCategoriesAC, search, price, currentCategory, addedProducts, isFetching}) => {
+const ProductsContainer: React.FC<Props> = ({ products, search, price, currentCategory, isFetching, getCategoriesAC }) => {
 
     let [needCategories, setNeedCategories] = useState(true)
 
@@ -27,7 +26,6 @@ const ProductsContainer: React.FC<Props> = ({ products, getCategoriesAC, search,
     }, [search, price])
 
     let filteredWithPriceProducts = products.filter((item => item.price < price))
-
     var filteredWithCategoryProducts
     if (currentCategory === 'All') {
         filteredWithCategoryProducts = filteredWithPriceProducts
@@ -35,12 +33,10 @@ const ProductsContainer: React.FC<Props> = ({ products, getCategoriesAC, search,
     else {
         filteredWithCategoryProducts = filteredWithPriceProducts.filter((item => item.category === currentCategory))
     }
-
     let filteredProducts = filteredWithCategoryProducts.filter((item => item.title.toLowerCase().includes(search.toLowerCase())))
 
-
     return (
-        <Products products={filteredProducts} addedProducts={addedProducts} isFetching={isFetching}/>
+        <Products products={filteredProducts} isFetching={isFetching} />
     )
 }
 
@@ -51,7 +47,6 @@ let mapStateToProps = (state: appStateType) => ({
     maxPrice: state.productsPage.maxPrice,
     currentCategory: state.productsPage.currentCategory,
     isBasket: state.productsPage.isBasket,
-    addedProducts: state.productsPage.addedProducts,
     isFetching: state.productsPage.isFetching
 });
 

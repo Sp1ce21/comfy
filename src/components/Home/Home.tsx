@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import ProductItemContainer from '../../common/ProductItem/ProductItemContainer';
 import Title from '../../common/Title/Title';

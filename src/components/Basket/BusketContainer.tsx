@@ -9,17 +9,13 @@ type Props = {
     totalPrice: number
 
     setIsBasket: (isBasket: boolean) => void
-
     clearAddedProducts: () => void
     setTotalPrice: (totalPrice: number) => void
     clearTotalPrice: () => void
     changeAddedProducts: (addedProducts: any) => void
 }
 
-const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clearAddedProducts, setTotalPrice, clearTotalPrice, changeAddedProducts }) => {
-
-
-
+const BusketContainer: React.FC<Props> = ({ addedProducts, totalPrice, setIsBasket, clearAddedProducts, setTotalPrice, clearTotalPrice, changeAddedProducts }) => {
 
     useLayoutEffect(() => {
         return () => clearTotalPrice()
@@ -49,7 +45,7 @@ const BusketContainer: React.FC<Props> = ({ setIsBasket, addedProducts, totalPri
     }
 
     return (
-        <Busket setIsBasket={setIsBasket} addedProducts={addedProducts} clearAddedProducts={clearAddedProducts} totalPrice={totalPrice} setTotalPrice={setTotalPrice} changeAddedProductsCallback={changeAddedProductsCallback} clearTotalPrice={clearTotalPrice}/>
+        <Busket totalPrice={totalPrice} addedProducts={addedProducts} clearAddedProducts={clearAddedProducts} setTotalPrice={setTotalPrice} changeAddedProductsCallback={changeAddedProductsCallback} clearTotalPrice={clearTotalPrice} setIsBasket={setIsBasket} />
     )
 }
 

@@ -7,12 +7,10 @@ import s from './Products.module.css'
 
 type Props = {
     products: Array<productsObject>
-    addedProducts: any
     isFetching: boolean
 }
 
 const Products: React.FC<Props> = ({ products, isFetching }) => {
-
 
     return (
         <main className={s.main}>

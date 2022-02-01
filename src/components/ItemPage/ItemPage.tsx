@@ -9,7 +9,6 @@ type Props = {
 }
 
 const ItemPage: React.FC<Props> = ({ currentItem, isFetching }) => {
-    debugger
     return (
         <main>
             <PageName name='Item' />

@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { connect } from "react-redux"
 import { productsObject, setAddedProducts, getProductById } from "../../redux/products-reducer"
 import { appStateType } from "../../redux/store"
@@ -14,10 +13,8 @@ export type Props = {
 }
 
 const ProductContainer: React.FC<Props> = ({ product, isBasket, addedProducts, setAddedProducts, getProductById }) => {
-
-
     return (
-        <ProductItem product={product} isBasket={isBasket} setAddedProducts={setAddedProducts} addedProducts={addedProducts} getProductById={getProductById} />
+        <ProductItem product={product} isBasket={isBasket} addedProducts={addedProducts} setAddedProducts={setAddedProducts} getProductById={getProductById} />
     )
 }
 

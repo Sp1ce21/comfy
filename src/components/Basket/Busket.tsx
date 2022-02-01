@@ -14,7 +14,7 @@ type Props = {
     changeAddedProductsCallback: (id: number) => void
 }
 
-const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clearAddedProducts, setTotalPrice, changeAddedProductsCallback, clearTotalPrice }) => {
+const Busket: React.FC<Props> = ({ addedProducts, totalPrice, setIsBasket, clearAddedProducts, setTotalPrice, changeAddedProductsCallback }) => {
 
     let [myTimeoutOpen, setMyTimeoutOpen] = useState(true)
     let [isActiveBasket, setIsActiveBasket] = useState(false)
@@ -27,13 +27,6 @@ const Busket: React.FC<Props> = ({ setIsBasket, addedProducts, totalPrice, clear
             }, 100);
         }
     }, [addedProducts, totalPrice])
-
-
-    useLayoutEffect(() => {
-        return () => {
-            // clearTotalPrice()
-        }
-    }, [totalPrice])
 
     return (
         <div className={isActiveBasket ? s.active : s.busket}>

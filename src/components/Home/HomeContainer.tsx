@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { connect } from "react-redux"
 import { productsObject, setIsAllProducts } from "../../redux/products-reducer"
 import { appStateType } from "../../redux/store"
@@ -14,8 +13,10 @@ type Props = {
 
 const HomeContainer: React.FC<Props> = ({ products, isAllProducts, isFetching, setIsAllProducts }) => {
 
+    const newProducts = isAllProducts ? products : products.slice(0, 3)
+
     return (
-        <Home products={isAllProducts ? products : products.slice(0, 3)} setIsAllProducts={setIsAllProducts} isFetching={isFetching} />
+        <Home products={newProducts} setIsAllProducts={setIsAllProducts} isFetching={isFetching} />
     )
 }
 

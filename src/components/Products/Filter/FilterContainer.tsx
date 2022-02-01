@@ -17,9 +17,6 @@ export type Props = {
 }
 
 const ProductsContainer: React.FC<Props> = ({ setPrice, price, setSearch, setCurrentCategory, search, maxPrice, minPrice, categories, currentCategory}) => {
-
-
-
     return (
         <Filter setPrice={setPrice} price={price} setSearch={setSearch} search={search} maxPrice={maxPrice} minPrice={minPrice} categories={categories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
     )

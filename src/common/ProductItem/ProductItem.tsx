@@ -11,13 +11,12 @@ type Props = {
     getProductById: (currentItemId: number) => void
 }
 
-const ProductItem: React.FC<Props> = ({ isBasket, setAddedProducts, product, addedProducts, getProductById }) => {
-
+const ProductItem: React.FC<Props> = ({ isBasket, product, addedProducts, getProductById, setAddedProducts }) => {
 
     let [isButton, setIsButton] = useState(false)
     let [isAddToCart, setIsAddToCart] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log('rerendered ', isAddToCart)
     }, [isAddToCart])
 

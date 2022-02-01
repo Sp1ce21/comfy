@@ -36,7 +36,6 @@
     margin-top: 60px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
 }
 
 .products {
@@ -59,7 +58,6 @@
     border: none;
     font-size: 16px;
     cursor: pointer;
-    /* max-width: 150px; */
     margin: 0 auto 70px;
 }
 .button:hover {
@@ -79,7 +77,5 @@
     }
     .titles h2 {
         font-size: 18px;
-    }
-    .titles a {
     }
 }
