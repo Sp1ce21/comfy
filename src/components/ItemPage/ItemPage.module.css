@@ -1,4 +1,4 @@
-.mainBlock{
+.mainBlock {
     margin: 40px 15px;
     display: flex;
     justify-content: flex-start;
@@ -11,22 +11,49 @@
     border: 1px solid #ccc;
     border-radius: 15px;
 }
-.column{
+.column {
     display: flex;
     flex-direction: column;
 }
-.column h1{
+.column h1 {
     font-size: 50px;
     margin-bottom: 40px;
 }
-.description{
+.description {
     font-size: 25px;
     margin-bottom: 30px;
 }
-.item{
+.item {
     font-size: 20px;
     margin-bottom: 10px;
 }
-.item span{
+.item span {
     font-weight: 700;
+}
+
+@media (max-width: 850px) {
+    .mainBlock {
+        flex-direction: column;
+        align-items: center;
+    }
+    .column{
+        margin-top: 20px;
+    }
+}
+@media (max-width: 500px) {
+    .mainBlock img {
+        width: 30vh;
+        height: 32vh;
+    }
+    .column h1 {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .description {
+        font-size: 17px;
+    }
+    .item {
+        font-size: 15px;
+    }
 }
